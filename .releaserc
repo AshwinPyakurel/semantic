@@ -1,6 +1,5 @@
 branches:
-  - main,
-  - repositoryUrl: "https://github.com/AshwinPyakurel/semantic"
+  - main  
   - name: alpha
     prerelease: true
 debug: true
