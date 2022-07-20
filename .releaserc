@@ -1,5 +1,6 @@
 branches:
-  - main
+  - main,
+   repositoryUrl: "https://github.com/thecodinganalyst/semantic-java",
   - name: alpha
     prerelease: true
 debug: true
