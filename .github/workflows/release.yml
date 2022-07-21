@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ main, alpha ]
 env:
-  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
     runs-on: ubuntu-latest
