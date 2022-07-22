@@ -1,1 +1,1 @@
-console.log("hello world to happy the major release ....!!!!");
+console.log("hello world to happy the major release!!!");
