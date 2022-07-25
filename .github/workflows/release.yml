@@ -18,6 +18,7 @@ jobs:
       with:
         node-version: 16.x
         cache: 'yarn'
+        cache-dependency-path: ./semantic/yarn.lock
     - name: Run and Setup
       working-directory: ./semantic
       run: | 
