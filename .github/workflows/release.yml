@@ -20,6 +20,7 @@ jobs:
         cache: 'yarn'
     - name: Run and Setup
       working-directory: ./semantic
-      run: yarn install --frozen-lockfile
-      run: yarn run build   
-      run: yarn semantic-release
+      run: | 
+          yarn install --frozen-lockfile
+          yarn run build   
+          yarn semantic-release
