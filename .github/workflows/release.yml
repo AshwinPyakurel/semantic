@@ -17,6 +17,7 @@ jobs:
       with:
         node-version: 16.x
         cache: 'yarn'
+        cache-dependency-path: './generators/yarn.lock'
     - run: yarn install --frozen-lockfile
     - run: yarn run build   
     - run: yarn semantic-release
