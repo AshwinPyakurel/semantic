@@ -9,4 +9,4 @@ plugins:
   - "@semantic-release/github"
   - "@semantic-release/changelog"    
   - "@semantic-release/git"  
-tagFormat: "${{branch}}@${version}"
+tagFormat: semantic@${version}
