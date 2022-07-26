@@ -25,3 +25,5 @@ jobs:
           yarn install --frozen-lockfile
           yarn run build   
           yarn semantic-release
+      env:
+        NODE_AUTH_TOKEN:
