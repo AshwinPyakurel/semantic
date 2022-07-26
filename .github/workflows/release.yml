@@ -23,4 +23,5 @@ jobs:
       working-directory: ./semantic
       run: | 
           yarn install --frozen-lockfile
-          yarn run build                  
+          yarn run build      
+          yarn semantic-release            
