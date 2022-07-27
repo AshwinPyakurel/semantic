@@ -32,9 +32,10 @@ jobs:
         PR: ${{ steps.branch-name.outputs.current_branch }}
 
 
-    - name: Check if it is from release branch      
+    - name: Check if it is from release branch
+      if: ${{env.PR}}
       run: |
-        echo "$PR"
+        echo "${{PR}}"
         echo "hello"
       
     - name: Use Node.js 16
