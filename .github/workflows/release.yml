@@ -29,12 +29,12 @@ jobs:
       run: |
         echo "Running on pr: ${{ steps.branch-name.outputs.current_branch }}"
       env:
-        PR: ${{ steps.branch-name.outputs.current_branch }}
+        PULL_REQUEST: ${{ steps.branch-name.outputs.current_branch }}
 
 
     - name: Check if it is from release branch      
       run: |
-        echo $PR     
+        echo ${{PULL_REQUEST}}
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
