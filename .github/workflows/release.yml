@@ -33,7 +33,7 @@ jobs:
 
 
     - name: Check if it is from release branch
-      if: ${{env.PR == "hello"}}
+      if: ${{env.PR != 'hello'}}
       run: |
         echo "${{PR}}"
         echo "hello"
