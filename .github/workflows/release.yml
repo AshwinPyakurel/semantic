@@ -21,13 +21,20 @@ jobs:
       if: steps.branch-name.outputs.is_default == 'true'
       run: |
         echo "Running on default: ${{ steps.branch-name.outputs.current_branch }}"
-      # Outputs: "Running on default: main".
+      env:
+        DEFAULT_BRANCH: ${{ steps.branch-name.outputs.current_branch }}
     
     - name: Running on a pull request branch.
       if: steps.branch-name.outputs.is_default == 'false'
       run: |
         echo "Running on pr: ${{ steps.branch-name.outputs.current_branch }}"
-      # Outputs: "Running on pr: feature/test".
+      env:
+        PR: ${{ steps.branch-name.outputs.current_branch }}
+
+
+    - name: Check if it is from release branch
+      if: ${{env.PR == 'hello'}}
+      run: echo "$PR"
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
