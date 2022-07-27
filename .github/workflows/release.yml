@@ -36,7 +36,7 @@ jobs:
 
     - name: Check if it is from release branch      
       run: |
-        echo "${{steps.prb.PR}}"
+        echo "${{steps.prb.outputs.PR}}"
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
