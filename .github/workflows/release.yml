@@ -28,7 +28,7 @@ jobs:
       id: pull_request_branch
 
     - name: Check if it is from release branch      
-      if: ${{steps.pull_request.outputs.PR == release/**/*}} 
+      if: ${{steps.pull_request.outputs.PR == 'release/**/*'}} 
       run: |
         echo '::set-output name=check_PR::release'
       id: check_PR
@@ -39,12 +39,11 @@ jobs:
         node-version: 16
         cache: 'yarn'
         cache-dependency-path: ./semantic/yarn.lock
-    - name: Setup and release
+    - name: Setup
       working-directory: ./semantic
       run: | 
           yarn install --frozen-lockfile
           yarn run build      
     - name: Dry Run
-      working-directory: ./semantic
-      if: ${{steps.check_PR.outputs.PR == 'release'}}
+      working-directory: ./semantic      
       run: yarn semantic-release --dry-run
