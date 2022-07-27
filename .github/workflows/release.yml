@@ -26,10 +26,11 @@ jobs:
     
     - name: Running on a pull request branch.
       if: steps.branch-name.outputs.is_default == 'false'
-      run: |
-        echo "Running on pr: ${{ steps.branch-name.outputs.current_branch }}"
       env:
         PULL_REQUEST: ${{ steps.branch-name.outputs.current_branch }}
+      run: |
+        echo "Running on pr: ${{ PULL_REQUEST }}"
+      
 
 
     - name: Check if it is from release branch      
