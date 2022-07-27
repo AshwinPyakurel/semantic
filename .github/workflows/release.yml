@@ -28,7 +28,7 @@ jobs:
       id: pull_request_branch
 
     - name: Check if it is from release branch      
-      if: ${{steps.pull_request.outputs.PR == 'release/**/*'}} 
+      if: steps.pull_request.outputs.PR == 'release/**/* 
       run: |
         echo '::set-output name=check_PR::release'
       id: check_PR
