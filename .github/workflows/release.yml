@@ -26,9 +26,8 @@ jobs:
       id: db
     
     - name: Running on a pull request branch.
-      if: steps.branch-name.outputs.is_default == 'false'  
-      env:
-        PULL_REQUEST: ${{ steps.branch-name.outputs.current_branch }}
+      if: steps.branch-name.outputs.is_default == 'false'        
+      PULL_REQUEST: ${{ steps.branch-name.outputs.current_branch }}
       run: |
         echo "Running on pr: ${{ env.PULL_REQUEST }}"
       id: prb
@@ -36,7 +35,7 @@ jobs:
 
     - name: Check if it is from release branch      
       run: |
-        echo "${{prb.env.PULL_REQUEST}}"
+        echo "${{steps.prb.PULL_REQUEST}}"
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
