@@ -34,7 +34,9 @@ jobs:
 
     - name: Check if it is from release branch
       if: ${{env.PR == 'hello'}}
-      run: echo "$PR"
+      run: |
+        echo "$PR"
+        echo "hello"
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
