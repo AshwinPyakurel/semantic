@@ -19,25 +19,18 @@ jobs:
         
     - name: Running on the default branch.
       if: steps.branch-name.outputs.is_default == 'true'
-      run: |
-        echo "Running on default: ${{ steps.branch-name.outputs.current_branch }}"
-      env:
-        DEFAULT_BRANCH: ${{ steps.branch-name.outputs.current_branch }}
-      id: db
+      run: echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
+      id: default_branch
     
     - name: Running on a pull request branch.
       if: steps.branch-name.outputs.is_default == 'false'        
-      run: echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'
-      #   PULL_REQUEST: ${{ steps.branch-name.outputs.current_branch }}
-      # run: |
-      #   echo "Running on pr: ${{ env.PULL_REQUEST }}"
-      id: prb
-
+      run: echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
+      id: pull_request_branch
 
     - name: Check if it is from release branch      
-      if: ${{steps.prb.outputs.PR}} == hello
+      if: ${{steps.pull_request.outputs.PR}} == release/**
       run: |
-        echo "happen"
+        echo happen
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
