@@ -35,8 +35,9 @@ jobs:
 
 
     - name: Check if it is from release branch      
+      if: ${{steps.prb.outputs.PR}} == hello
       run: |
-        echo "${{steps.prb.outputs.PR}}"
+        echo "happen"
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
