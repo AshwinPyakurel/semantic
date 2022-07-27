@@ -29,7 +29,7 @@ jobs:
       env:
         PULL_REQUEST: ${{ steps.branch-name.outputs.current_branch }}
       run: |
-        echo "Running on pr: ${{ PULL_REQUEST }}"
+        echo "Running on pr: ${{ env.PULL_REQUEST }}"
       
 
 
