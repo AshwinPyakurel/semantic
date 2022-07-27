@@ -32,8 +32,7 @@ jobs:
         PR: ${{ steps.branch-name.outputs.current_branch }}
 
 
-    - name: Check if it is from release branch
-      if: ${{env.PR == 'hello'}}
+    - name: Check if it is from release branch      
       run: |
         echo "$PR"
         echo "hello"
