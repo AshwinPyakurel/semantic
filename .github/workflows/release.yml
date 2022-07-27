@@ -46,5 +46,5 @@ jobs:
           yarn run build      
     - name: Dry Run
       working-directory: ./semantic
-      if: ${{steps.check_PR.outputs == release}}
+      if: ${{steps.check_PR.outputs.PR == 'release'}}
       run: yarn semantic-release --dry-run
