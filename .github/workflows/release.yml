@@ -19,15 +19,19 @@ jobs:
         
     - name: Running on the default branch.
       if: steps.branch-name.outputs.is_default == 'true'
-      run: |
-        echo "Running on default: ${{ steps.branch-name.outputs.current_branch }}"
-      # Outputs: "Running on default: main".
+      run: echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
+      id: default_branch
     
     - name: Running on a pull request branch.
-      if: steps.branch-name.outputs.is_default == 'false'
+      if: steps.branch-name.outputs.is_default == 'false'        
+      run: echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
+      id: pull_request_branch
+
+    - name: Check if it is from release branch      
+      if: steps.pull_request.outputs.PR != 'release/**/*'
       run: |
-        echo "Running on pr: ${{ steps.branch-name.outputs.current_branch }}"
-      # Outputs: "Running on pr: feature/test".
+        echo '::set-output name=check_PR::release'
+      id: check_PR
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
@@ -35,9 +39,11 @@ jobs:
         node-version: 16
         cache: 'yarn'
         cache-dependency-path: ./semantic/yarn.lock
-    - name: Setup and release
+    - name: Setup
       working-directory: ./semantic
       run: | 
           yarn install --frozen-lockfile
           yarn run build      
-          yarn semantic-release            
+    - name: Dry Run
+      working-directory: ./semantic      
+      run: yarn semantic-release --dry-run
