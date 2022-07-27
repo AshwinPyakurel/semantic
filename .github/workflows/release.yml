@@ -15,7 +15,7 @@ jobs:
 
     - name: Check PR from release branch
       shell: bash
-      run: echo "github.head_ref"
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: get_branch
       
     - name: Use Node.js 16
