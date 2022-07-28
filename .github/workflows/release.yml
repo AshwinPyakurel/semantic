@@ -49,6 +49,6 @@ jobs:
           yarn build
 
     - name: Release      
-      if: $GITHUB_HEAD_REF
+      # if: $GITHUB_HEAD_REF
       working-directory: ./semantic
       run: yarn semantic-release
