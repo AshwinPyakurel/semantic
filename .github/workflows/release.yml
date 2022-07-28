@@ -27,11 +27,11 @@ jobs:
       run: echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
       id: pull_request_branch
 
-    - name: Check if it is from release branch      
-      if: steps.pull_request.outputs.PR != 'release/**/*'
-      run: |
-        echo '::set-output name=check_PR::release'
-      id: check_PR
+    # - name: Check if it is from release branch      
+    #   if: steps.pull_request.outputs.PR != 'release/**/*'
+    #   run: |
+    #     echo '::set-output name=check_PR::release'
+    #   id: check_PR
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
@@ -45,7 +45,7 @@ jobs:
           yarn install --frozen-lockfile
           yarn run build      
     - name: Dry Run
-      if: contains(github.head_ref, 'release/') && !github.event.pull_request.merged
+      if: contains(steps.pull_request_branch.outputs.PR, 'release/') && !github.event.pull_request.merged
       working-directory: ./semantic      
       run: yarn semantic-release --dry-run
     - name: Release
