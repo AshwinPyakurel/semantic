@@ -29,6 +29,7 @@ jobs:
       run: |
           echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
           echo '::set-output name=HEAD::${{ github.head_ref }}'
+          echo '::set-output name=BASE::${{ github.base_ref }}'
       id: default_branch
     
     - name: Running on a pull request branch.
@@ -52,6 +53,7 @@ jobs:
       working-directory: ./semantic
       run: | 
           echo ${{steps.pull_request_branch.outputs.PR}}
+          echo ${{steps.pull_request_branch.outputs.PR}}
           yarn install --frozen-lockfile
           yarn run build      
     - name: Dry Run
@@ -59,6 +61,6 @@ jobs:
       working-directory: ./semantic      
       run: yarn semantic-release --dry-run
     - name: Release
-      if: "github.event.pull_request.merged && contains(github.base_ref, 'main') && contains(github.head_ref, 'release/hello')"
+      # if: "github.event.pull_request.merged && contains(github.base_ref, 'main') && contains(github.head_ref, 'release/hello')"
       working-directory: ./semantic
       run: yarn semantic-release
