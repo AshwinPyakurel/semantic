@@ -21,25 +21,7 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Get branch name
-      id: branch-name
-      uses: tj-actions/branch-names@v5.4   
-    
-    - name: Running on a pull request branch.            
-      run: |
-          echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
-          echo '::set-output name=HEAD::${{ github.head_ref }}'
-          echo '::set-output name=BASE::${{ github.base_ref }}'
-          echo '::set-output name=MERGE::${{ github.event.pull_request.merged }}'
-      id: pull_request_branch
-
-    # - name: Check if it is from release branch      
-    #   if: steps.pull_request.outputs.PR != 'release/**/*'
-    #   run: |
-    #     echo '::set-output name=check_PR::release'
-    #   id: check_PR
+      uses: actions/checkout@v3    
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
@@ -49,16 +31,9 @@ jobs:
         cache-dependency-path: ./semantic/yarn.lock
     - name: Setup
       working-directory: ./semantic
-      run: | 
-          echo ${{steps.pull_request_branch.outputs.PR}}
-          echo ${{steps.pull_request_branch.outputs.BASE}}
-          echo ${{steps.pull_request_branch.outputs.MERGE}}
+      run: |          
           yarn install --frozen-lockfile
-          yarn run build      
-    - name: Dry Run
-      if: contains(github.head_ref, 'release/') && !github.event.pull_request.merged
-      working-directory: ./semantic      
-      run: yarn semantic-release --dry-run
+          yarn build          
     - name: Release      
       working-directory: ./semantic
       run: yarn semantic-release
