@@ -34,12 +34,20 @@ jobs:
 
     - name: Get branch name
       id: branch-name
-      uses: tj-actions/branch-names@v5.4   
+      uses: tj-actions/branch-names@v5.4  
+
+    - name: Running on a pull request branch.
+      if: steps.branch-name.outputs.is_default == 'false'
+      run: |
+        echo "Running on pr: ${{ steps.branch-name.outputs.current_branch }}"
+        echo '::set-output name=PRB::${{ steps.branch-name.outputs.current_branch }}'
+      id: prb
+      # Outputs: "Running on pr: feature/test". 
 
     - name: Setup
       working-directory: ./semantic
       run: |  
-          echo "${{ steps.branch-name.outputs.current_branch }}"       
+          echo "${{ steps.prb.outputs.PRB }}"       
           yarn install --frozen-lockfile
           yarn build
 
