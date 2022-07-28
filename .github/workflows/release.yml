@@ -37,14 +37,15 @@ jobs:
       uses: tj-actions/branch-names@v5.4  
 
     - name: Check github_head.ref      
-      run: |          
+      run: |   
+          echo '::set-output name=title::${{ github.event.head_commit.message }}'       
           echo $GITHUB_HEAD_REF
       id: get_head
          
     - name: Setup
       working-directory: ./semantic
-      run: |     
-          echo ${{github.event.head_commit.message}}
+      run: |      
+          echo ${{steps.get_head.outputs.title}}         
           yarn install --frozen-lockfile
           yarn build
 
