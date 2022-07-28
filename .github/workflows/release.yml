@@ -34,7 +34,8 @@ jobs:
 
     - name: Setup
       working-directory: ./semantic
-      run: |          
+      run: |
+          echo ${{github.head_ref}}
           yarn install --frozen-lockfile
           yarn build
 
