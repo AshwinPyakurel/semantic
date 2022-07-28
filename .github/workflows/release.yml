@@ -3,12 +3,14 @@ on:
   push:
     branches:
       - main
+      - next
     # paths:
     #   - semantic/**/*
 
   pull_request:
     branches:
       - main
+      - next
     types: [synchronize, closed, opened]
     # paths:
     #   - semantic/**/*
@@ -58,6 +60,6 @@ jobs:
       working-directory: ./semantic      
       run: yarn semantic-release --dry-run
     - name: Release
-      if: "github.event.pull_request.merged == true && contains(github.base_ref, 'main') && contains(github.head_ref, 'release/')"
+      if: "github.event.pull_request.merged == true"
       working-directory: ./semantic
       run: yarn semantic-release
