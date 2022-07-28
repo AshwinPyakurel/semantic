@@ -37,8 +37,7 @@ jobs:
       uses: tj-actions/branch-names@v5.4  
 
     - name: Check github_head.ref      
-      run: |
-          echo '::set-output name=head::$GITHUB_HEAD_REF'
+      run: |          
           echo $GITHUB_HEAD_REF
       id: get_head
          
@@ -50,6 +49,6 @@ jobs:
           yarn build
 
     - name: Release      
-      if: ${{ steps.get_head.outputs.head }}
+      if: $GITHUB_HEAD_REF
       working-directory: ./semantic
       run: yarn semantic-release
