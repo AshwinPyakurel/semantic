@@ -43,7 +43,8 @@ jobs:
          
     - name: Setup
       working-directory: ./semantic
-      run: |            
+      run: |     
+          echo "${{steps.get_head.outputs.head}}"       
           yarn install --frozen-lockfile
           yarn build
 
