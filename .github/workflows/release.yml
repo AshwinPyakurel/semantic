@@ -37,7 +37,7 @@ jobs:
       uses: tj-actions/branch-names@v5.4  
 
     - name: Check github_head.ref      
-      run: echo '::set-output name=head::${{github.event.pull_request.head.ref}}'
+      run: echo '::set-output name=head::${{github.event.pull_request.base.ref}}'
       id: get_head
          
     - name: Setup
