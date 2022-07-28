@@ -36,6 +36,7 @@ jobs:
           echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
           echo '::set-output name=HEAD::${{ github.head_ref }}'
           echo '::set-output name=BASE::${{ github.base_ref }}'
+          echo '::set-output name=MERGE::${{ github.event.pull_request.merged }}'
       id: pull_request_branch
 
     # - name: Check if it is from release branch      
@@ -55,9 +56,7 @@ jobs:
       run: | 
           echo ${{steps.pull_request_branch.outputs.PR}}
           echo ${{steps.pull_request_branch.outputs.BASE}}
-          echo contains(github.base_ref, 'main')
-          echo contains(github.head_ref, 'main')
-          echo github.event.pull_request.merged
+          echo ${{steps.pull_request_branch.outputs.MERGE}}
           yarn install --frozen-lockfile
           yarn run build      
     - name: Dry Run
