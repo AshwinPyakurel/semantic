@@ -20,7 +20,6 @@ env:
 
 jobs:
   build:
-    if: ${{ contains(github.head_ref, 'release/') }}
     runs-on: ubuntu-latest    
     steps:
     - name: Checkout
@@ -33,12 +32,18 @@ jobs:
         cache: 'yarn'
         cache-dependency-path: ./semantic/yarn.lock
 
+    - name: Get branch name
+      id: branch-name
+      uses: tj-actions/branch-names@v5.4   
+
     - name: Setup
       working-directory: ./semantic
-      run: |          
+      run: |  
+          echo "${{ steps.branch-name.outputs.current_branch }}"       
           yarn install --frozen-lockfile
           yarn build
 
     - name: Release      
+      if: ${{ contains(steps.branch-name.outputs.current_branch, 'release/') }}
       working-directory: ./semantic
       run: yarn semantic-release
