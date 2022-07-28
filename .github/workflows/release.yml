@@ -20,7 +20,6 @@ env:
 
 jobs:
   build:
-    if: ${{ contains(github.head_ref, 'release/') }}
     runs-on: ubuntu-latest    
     steps:
     - name: Checkout
@@ -33,12 +32,32 @@ jobs:
         cache: 'yarn'
         cache-dependency-path: ./semantic/yarn.lock
 
+    - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.4
+        
+    # - name: Running on the default branch.
+    #   if: steps.branch-name.outputs.is_default == 'true'
+    #   run: |
+    #     echo "Running on default: ${{ steps.branch-name.outputs.current_branch }}"
+    #   # Outputs: "Running on default: main".
+    
+    - name: Running on a pull request branch.
+      if: steps.branch-name.outputs.is_default == 'false'
+      run: |
+        echo "Running on pr: ${{ steps.branch-name.outputs.current_branch }}"
+        echo '::set-output name=PR_branch::${{ steps.branch-name.outputs.current_branch }}'
+      # Outputs: "Running on pr: feature/test".
+      id: prb
+
     - name: Setup
       working-directory: ./semantic
-      run: |          
+      run: |  
+          echo ${{setps.prb.outputs.PR_branch}}        
           yarn install --frozen-lockfile
           yarn build
 
     - name: Release      
+      if: ${{ contains(github.head_ref, 'release/') }}
       working-directory: ./semantic
       run: yarn semantic-release
