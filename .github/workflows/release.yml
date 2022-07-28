@@ -38,14 +38,14 @@ jobs:
 
     - name: Check github_head.ref      
       run: |   
-          echo '::set-output name=title::${{ github.event.head_commit.message }}'       
+          echo '::set-output name=TITLE::${{ github.event.head_commit.message }}'       
           echo ${{github.event.head_commit.message}}
       id: get_head
          
     - name: Setup
       working-directory: ./semantic
       run: |      
-          echo ${{steps.get_head.outputs.title}}         
+          echo ${{steps.get_head.outputs.TITLE}}         
           yarn install --frozen-lockfile
           yarn build
 
