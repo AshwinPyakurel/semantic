@@ -61,6 +61,6 @@ jobs:
       working-directory: ./semantic      
       run: yarn semantic-release --dry-run
     - name: Release
-      if: "github.event.pull_request.merged && contains(github.base_ref, 'main')"
+      if: "github.event.pull_request.merged"
       working-directory: ./semantic
       run: yarn semantic-release
