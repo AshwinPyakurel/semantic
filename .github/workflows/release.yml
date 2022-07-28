@@ -39,6 +39,6 @@ jobs:
           yarn build
 
     - name: Release      
-      if: "github.event.pull_request.merged && contains(github.base_ref, 'main') && contains(github.head_ref, 'release/')"
+      if: "contains(github.head_ref, 'release/')"
       working-directory: ./semantic
       run: yarn semantic-release
