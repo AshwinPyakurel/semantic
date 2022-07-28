@@ -44,6 +44,6 @@ jobs:
           yarn build
 
     - name: Release      
-      if: ${{ contains(github.head_ref, 'release/') }}
+      if: ${{ contains(steps.branch-name.outputs.current_branch, 'release/') }}
       working-directory: ./semantic
       run: yarn semantic-release
