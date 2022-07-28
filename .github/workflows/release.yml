@@ -23,15 +23,9 @@ jobs:
 
     - name: Get branch name
       id: branch-name
-      uses: tj-actions/branch-names@v5.4
-        
-    - name: Running on the default branch.
-      if: steps.branch-name.outputs.is_default == 'true'
-      run: echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
-      id: default_branch
+      uses: tj-actions/branch-names@v5.4   
     
-    - name: Running on a pull request branch.
-      if: steps.branch-name.outputs.is_default == 'false'        
+    - name: Running on a pull request branch.            
       run: |
           echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
           echo '::set-output name=HEAD::${{ github.head_ref }}'
