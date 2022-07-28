@@ -51,7 +51,7 @@ jobs:
     - name: Setup
       working-directory: ./semantic
       run: | 
-          echo steps.pull_request_branch.outputs.PR
+          echo ${{steps.pull_request_branch.outputs.PR}}
           yarn install --frozen-lockfile
           yarn run build      
     - name: Dry Run
