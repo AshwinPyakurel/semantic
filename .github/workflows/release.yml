@@ -9,7 +9,7 @@ on:
   pull_request:
     branches:
       - main
-    types: [synchronize, closed, open]
+    types: [synchronize, closed, opened]
     # paths:
     #   - semantic/**/*
 env:
