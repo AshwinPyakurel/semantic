@@ -44,7 +44,7 @@ jobs:
     - name: Setup
       working-directory: ./semantic
       run: |     
-          echo "${{steps.get_head.outputs.head}}"       
+          echo "${{github.event.head_commit.message}}"       
           yarn install --frozen-lockfile
           yarn build
 
