@@ -36,22 +36,19 @@ jobs:
       id: branch-name
       uses: tj-actions/branch-names@v5.4  
 
-    - name: Running on a pull request branch.
-      if: steps.branch-name.outputs.is_default == 'false'
-      run: |
-        echo "Running on pr: ${{ steps.branch-name.outputs.current_branch }}"
-        echo '::set-output name=PRB::${{ steps.branch-name.outputs.current_branch }}'
-      id: prb
-      # Outputs: "Running on pr: feature/test". 
-
+    - name: Check github_head.ref
+      if: ${{ contains(github.head_ref, 'release/')}}
+      run: echo '::set-output name=head::${{github.head_ref}}'
+      id: get_head
+         
     - name: Setup
       working-directory: ./semantic
-      run: |  
-          echo "${{ steps.prb.outputs.PRB }}"       
+      run: |     
+          echo "${{steps.get_head.outputs.head}}"       
           yarn install --frozen-lockfile
           yarn build
 
     - name: Release      
-      if: ${{ contains(steps.branch-name.outputs.current_branch, 'release/') }}
+      if: ${{ steps.get_head.outputs.head }}
       working-directory: ./semantic
       run: yarn semantic-release
