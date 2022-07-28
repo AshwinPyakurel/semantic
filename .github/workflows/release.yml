@@ -38,7 +38,6 @@ jobs:
           yarn install --frozen-lockfile
           yarn build
 
-    - name: Release      
-      if: "contains(github.base_ref, 'main') && contains(github.head_ref, 'release/')"
+    - name: Release            
       working-directory: ./semantic
       run: yarn semantic-release
