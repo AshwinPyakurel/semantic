@@ -39,5 +39,6 @@ jobs:
           yarn build
 
     - name: Release      
+      if: "contains(github.base_ref, 'main') && contains(github.head_ref, 'release/')"
       working-directory: ./semantic
       run: yarn semantic-release
