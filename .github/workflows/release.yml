@@ -59,7 +59,6 @@ jobs:
       if: contains(github.head_ref, 'release/') && !github.event.pull_request.merged
       working-directory: ./semantic      
       run: yarn semantic-release --dry-run
-    - name: Release
-      if: "github.event.pull_request.merged == true"
+    - name: Release      
       working-directory: ./semantic
       run: yarn semantic-release
