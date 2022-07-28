@@ -1,9 +1,16 @@
 name: Release
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+    paths:
+      - semantic/**/*
+
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+    paths:
+      - semantic/**/*
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
@@ -19,7 +26,9 @@ jobs:
         
     - name: Running on the default branch.
       if: steps.branch-name.outputs.is_default == 'true'
-      run: echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
+      run: |
+          echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
+          echo '::set-output name=HEAD::${{ github.head_ref }}'
       id: default_branch
     
     - name: Running on a pull request branch.
@@ -27,11 +36,11 @@ jobs:
       run: echo '::set-output name=PR::${{ steps.branch-name.outputs.current_branch }}'      
       id: pull_request_branch
 
-    - name: Check if it is from release branch      
-      if: steps.pull_request.outputs.PR != 'release/**/*'
-      run: |
-        echo '::set-output name=check_PR::release'
-      id: check_PR
+    # - name: Check if it is from release branch      
+    #   if: steps.pull_request.outputs.PR != 'release/**/*'
+    #   run: |
+    #     echo '::set-output name=check_PR::release'
+    #   id: check_PR
       
     - name: Use Node.js 16
       uses: actions/setup-node@v3
@@ -42,6 +51,7 @@ jobs:
     - name: Setup
       working-directory: ./semantic
       run: | 
+          echo ${{steps.pull_request_branch.outputs.PR}}
           yarn install --frozen-lockfile
           yarn run build      
     - name: Dry Run
@@ -49,6 +59,6 @@ jobs:
       working-directory: ./semantic      
       run: yarn semantic-release --dry-run
     - name: Release
-      if: "github.event.pull_request.merged && contains(github.base_ref, 'main') && contains(github.head_ref, 'release/')"
+      if: "github.event.pull_request.merged && contains(github.base_ref, 'main') && contains(github.head_ref, 'release/hello')"
       working-directory: ./semantic
       run: yarn semantic-release
