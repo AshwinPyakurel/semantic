@@ -1,3 +1,7 @@
+branches:
+  - main   
+debug: true
+ci: true
 plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
