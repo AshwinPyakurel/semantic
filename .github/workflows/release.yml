@@ -1,9 +1,16 @@
 name: Release
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+    paths:
+      - semantic/**/*
+
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+    paths:
+      - semantic/**/*
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
