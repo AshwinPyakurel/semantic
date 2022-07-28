@@ -1,1 +1,1 @@
-console.log("hello world to happy the hello hello hello hellos releaseasd");
+console.log("hello world to happy releaseasd");
