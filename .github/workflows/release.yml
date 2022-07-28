@@ -38,7 +38,7 @@ jobs:
 
     - name: Check github_head.ref
       if: ${{ contains(github.head_ref, 'release/')}}
-      run: echo '::set-output name=head::github.head_ref'
+      run: echo '::set-output name=head::${{github.head_ref}}'
       id: get_head
          
     - name: Setup
