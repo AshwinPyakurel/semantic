@@ -49,10 +49,12 @@ jobs:
     - name: Setup
       working-directory: ./semantic
       run: | 
+          echo github.base_ref
+          echo github.head_ref
           yarn install --frozen-lockfile
           yarn run build      
     - name: Dry Run
-      if: contains(steps.pull_request_branch.outputs.PR, 'release/') && !github.event.pull_request.merged
+      if: contains(github.head_ref, 'release/') && !github.event.pull_request.merged
       working-directory: ./semantic      
       run: yarn semantic-release --dry-run
     - name: Release
