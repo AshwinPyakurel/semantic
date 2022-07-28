@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/AshwinPyakurel/semantic/compare/semantic@1.4.0...semantic@1.5.0) (2022-07-28)
+
+
+### Features
+
+* hello ([df4acbb](https://github.com/AshwinPyakurel/semantic/commit/df4acbb9432e834833f6e58d5a9d73112f667351))
+* helo ([0aa1cc0](https://github.com/AshwinPyakurel/semantic/commit/0aa1cc0ef7418cca61b204dc978126df5bac7932))
+
 # [1.4.0](https://github.com/AshwinPyakurel/semantic/compare/semantic@1.3.0...semantic@1.4.0) (2022-07-28)
 
 
