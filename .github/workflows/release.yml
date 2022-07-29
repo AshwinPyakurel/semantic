@@ -50,6 +50,7 @@ jobs:
 
     - name: Dry Run
       if: steps.branch-name.outputs.is_default == 'false'
+      working-directory: ./semantic
       run: |
           yarn semantic-release --dry-run
 
