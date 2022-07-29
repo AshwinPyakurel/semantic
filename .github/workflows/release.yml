@@ -35,6 +35,7 @@ jobs:
     - name: Get branch name
       id: branch-name
       uses: tj-actions/branch-names@v5.4  
+    
 
     - name: Get latest commit message
       run: |   
@@ -46,6 +47,11 @@ jobs:
       run: |                   
           yarn install --frozen-lockfile
           yarn build
+
+    - name: Dry Run
+      if: steps.branch-name.outputs.is_default == 'false'
+      run: |
+          yarn semantic-release --dry-run
 
     - name: Release      
       if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
