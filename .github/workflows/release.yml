@@ -48,6 +48,7 @@ jobs:
           yarn install --frozen-lockfile
           yarn build
 
+    
     - name: Dry Run
       if: steps.branch-name.outputs.is_default == 'false'
       working-directory: ./semantic
