@@ -53,7 +53,7 @@ jobs:
       if: steps.branch-name.outputs.is_default == 'false'
       working-directory: ./semantic
       run: |
-          yarn semantic-release --dry-run
+          yarn semantic-release --dry-run --no-ci
 
     - name: Release      
       if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
