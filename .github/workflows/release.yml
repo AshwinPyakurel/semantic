@@ -22,6 +22,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Gets semantic release info
+      id: semantic_release_info
+      uses: jossef/action-semantic-release-info@v1
+
     - name: Checkout
       uses: actions/checkout@v3
 
@@ -35,7 +39,6 @@ jobs:
     - name: Get branch name
       id: branch-name
       uses: tj-actions/branch-names@v5.4
-
 
     - name: Get latest commit message
       run: |
@@ -58,12 +61,40 @@ jobs:
           yarn install --frozen-lockfile
           yarn build
 
+    - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "docs(): bumping release ${{ steps.semantic_release_info.outputs.git_tag }}"
+          git tag ${{ steps.semantic_release_info.outputs.git_tag }}
+
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        github_token: ${{ github.token }}
+        tags: true
+
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ steps.semantic_release_info.outputs.git_tag }}
+        release_name: ${{ steps.semantic_release_info.outputs.git_tag }}
+        body: ${{ steps.semantic_release_info.outputs.notes }}
+        draft: false
+        prerelease: false
 
     - name: Dry Run
       if: steps.branch-name.outputs.is_default == 'false'
       working-directory: ./semantic
       run: |
           yarn semantic-release --dry-run --no-ci
+
+    - name: Gets semantic release info
+      id: semantic_release_info
+      uses: jossef/action-semantic-release-info@v1
+      run: |
+          echo ""
 
     # - name: Build Artifact
     #   if: contains(steps.get_message.outputs.title,'Merge pull request') && !contains(steps.get_message.outputs.title,'release')
