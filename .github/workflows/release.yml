@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - next    
+      - next
     # paths:
     #   - semantic/**/*
 
@@ -20,11 +20,11 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3    
-      
+      uses: actions/checkout@v3
+
     - name: Use Node.js 16
       uses: actions/setup-node@v3
       with:
@@ -34,28 +34,42 @@ jobs:
 
     - name: Get branch name
       id: branch-name
-      uses: tj-actions/branch-names@v5.4  
-    
+      uses: tj-actions/branch-names@v5.4
+
 
     - name: Get latest commit message
-      run: |   
-          echo '::set-output name=title::${{ github.event.head_commit.message }}'                 
+      run: |
+          echo '::set-output name=title::${{ github.event.head_commit.message }}'
+          echo '::set-output name=sha::${{ github.sha }}'
       id: get_message
-         
+
+    - name: Generate build number
+      id: buildnumber
+      uses: einaregilsson/build-number@v3
+      with:
+        token: ${{secrets.github_token}}
+
     - name: Setup
       working-directory: ./semantic
-      run: |                   
+      run: |
+          echo ${{steps.get_message.outputs.sha}}
+          echo ${{steps.buildnumber.outputs.build_number}}
           yarn install --frozen-lockfile
           yarn build
 
-    
+
     - name: Dry Run
       if: steps.branch-name.outputs.is_default == 'false'
       working-directory: ./semantic
       run: |
           yarn semantic-release --dry-run --no-ci
 
-    - name: Release      
+    - name: Build Artifact
+      if: contains(steps.get_message.outputs.title,'Merge pull request') && !contains(steps.get_message.outputs.title,'release')
+      working-directory: ./semantic
+      run:
+
+    - name: Release
       if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
       working-directory: ./semantic
       run: yarn semantic-release
