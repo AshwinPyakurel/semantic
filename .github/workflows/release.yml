@@ -44,10 +44,10 @@ jobs:
       id: get_message
 
     - name: Generate build number
-      id: buildnumber
       uses: einaregilsson/build-number@v3
       with:
         token: ${{secrets.github_token}}
+      id: buildnumber
 
     - name: Setup
       working-directory: ./semantic
