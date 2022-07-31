@@ -41,7 +41,7 @@ jobs:
       run: |
           echo '::set-output name=title::${{ github.event.head_commit.message }}'
           echo '::set-output name=sha::${{ github.sha }}'
-          echo '::set-output name=action_number::${{ github.action }}'
+          echo '::set-output name=action::${{ github.action }}'
       id: get_message
 
     # - name: Generate build number
@@ -54,7 +54,7 @@ jobs:
       working-directory: ./semantic
       run: |
           echo ${{steps.get_message.outputs.sha}}
-          echo ${{steps.get_message.outputs.action_number}}
+          echo ${{steps.get_message.outputs.action}}
           yarn install --frozen-lockfile
           yarn build
 
