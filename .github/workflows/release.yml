@@ -41,7 +41,7 @@ jobs:
       run: |
           echo '::set-output name=title::${{ github.event.head_commit.message }}'
           echo '::set-output name=sha::${{ github.sha }}'
-          echo '::set-output name=action::${{ github.action }}'
+          echo '::set-output name=action::${{ github.ref }}'
       id: get_message
 
     # - name: Generate build number
