@@ -65,7 +65,7 @@ jobs:
         BUILD_ID=$(echo $GITHUB_SHA | head -c7)
         VERSION=generators+build.${BUILD_NUM}.${BUILD_ID}
         ARTIFACT_NAME=${VERSION}.zip
-        cp package.json dist/
+        cp package.json dist
         cd dist && zip -r9q ${{ github.workspace }}/${ARTIFACT_NAME} . && cd ..
         ls -al ${{ github.workspace }}
         echo $ARITFACT_NAME
@@ -79,11 +79,6 @@ jobs:
         name: ${{ steps.create_artifact.outputs.version }}
         path: ./${{ steps.create_artifact.outputs.artifact_name }}
         retention-days: 14
-
-    - name: Download a single artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: ${{steps.create_artifact.outputs.version}}
 
     - name: Outputs
       run: |
