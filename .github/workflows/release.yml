@@ -67,7 +67,7 @@ jobs:
         SERVICE=${{ matrix.service }}
         VERSION=${SERVICE}+build.${BUILD_NUM}.${TIMESTAMP}.${BUILD_ID}
         ARTIFACT_NAME=${VERSION}.zip
-        cp pm2.config.js package.json .npmrc appspec.yml dist/
+        cp dist/
         cd dist && zip -r9q ${{ github.workspace }}/${ARTIFACT_NAME} . && cd ..
         ls -al ${{ github.workspace }}
         echo $ARITFACT_NAME
