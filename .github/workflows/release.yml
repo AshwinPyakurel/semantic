@@ -55,18 +55,8 @@ jobs:
           yarn install --frozen-lockfile
           yarn build
 
-    - name: Gets semantic release info
-      uses: jossef/action-semantic-release-info@v1
-      with:
-        working-directory: ./semantic
-      id: semantic_release_info
-
     - name: Outputs
       run: |
-          echo ${{ steps.semantic_release_info.outputs.git_head }}
-          echo ${{ steps.semantic_release_info.outputs.git_tag }}
-          echo ${{ steps.semantic_release_info.outputs.version }}
-          echo ${{ steps.semantic_release_info.outputs.name }}
           echo ${{steps.get_message.outputs.sha}}
           echo ${{steps.get_message.outputs.action}}
 
