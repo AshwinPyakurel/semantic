@@ -62,7 +62,8 @@ jobs:
       id: create_artifact
       run: |
         BUILD_NUM=$(echo $GITHUB_RUN_NUMBER)
-        VERSION=generators-build.${BUILD_NUM}.${github.sha}
+        SHA1 = ${{steps.get_message.outputs.sha}}
+        VERSION=generators-build.${BUILD_NUM}.${TIMESTAMP}.${SHA1}
         ARTIFACT_NAME=${VERSION}.zip
         cp package.json dist/
         cd dist && zip -r9q ${{ github.workspace }}/${ARTIFACT_NAME} . && cd ..
