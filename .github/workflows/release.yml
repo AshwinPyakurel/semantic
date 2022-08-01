@@ -27,7 +27,7 @@ jobs:
 
     - name: Gets semantic release info
       uses: jossef/action-semantic-release-info@v1
-      working-directory: ./semantic
+      # working-directory: ./semantic
       id: semantic_release_info
 
     - name: Use Node.js 16
