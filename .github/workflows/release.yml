@@ -83,7 +83,7 @@ jobs:
     - name: Download a single artifact
       uses: actions/download-artifact@v3
       with:
-        name: ${{steps.create_artifact.outputs.artifact_name}}
+        name: ${{steps.create_artifact.outputs.version}}
 
     - name: Outputs
       run: |
