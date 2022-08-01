@@ -49,24 +49,33 @@ jobs:
     #     token: ${{secrets.github_token}}
     #   id: buildnumber
 
+
     - name: Setup
       working-directory: ./semantic
       run: |
           yarn install --frozen-lockfile
           yarn build
 
-    - name: Gets semantic release info
-      uses: jossef/action-semantic-release-info@v1
-      with:
-        working-directory: ./semantic
-      id: semantic_release_info
+    - name: Create Artifact
+      if: "!contains(github.base_ref, 'main')"
+      id: create_artifact
+      run: |
+        BUILD_NUM=$(echo $GITHUB_RUN_NUMBER)
+        TIMESTAMP=$(date -u +%Y%m%d%H%M%S)
+        BUILD_ID=$(echo $GITHUB_SHA | head -c7)
+        SERVICE=${{ matrix.service }}
+        VERSION=${SERVICE}+build.${BUILD_NUM}.${TIMESTAMP}.${BUILD_ID}
+        ARTIFACT_NAME=${VERSION}.zip
+        cp pm2.config.js package.json .npmrc appspec.yml dist/
+        cd dist && zip -r9q ${{ github.workspace }}/${ARTIFACT_NAME} . && cd ..
+        ls -al ${{ github.workspace }}
+        echo $ARITFACT_NAME
+        echo ::set-output name=version::${VERSION}
+        echo ::set-output name=artifact_name::${ARTIFACT_NAME}
 
     - name: Outputs
       run: |
-          echo ${{ steps.semantic_release_info.outputs.git_head }}
-          echo ${{ steps.semantic_release_info.outputs.git_tag }}
-          echo ${{ steps.semantic_release_info.outputs.version }}
-          echo ${{ steps.semantic_release_info.outputs.name }}
+          echo ${{steps.create_artifact.outputs.artifact_name}}
           echo ${{steps.get_message.outputs.sha}}
           echo ${{steps.get_message.outputs.action}}
 
@@ -74,6 +83,7 @@ jobs:
       if: steps.branch-name.outputs.is_default == 'false'
       working-directory: ./semantic
       run: |
+          yarn build
           yarn semantic-release --dry-run --no-ci
 
     # - name: Build Artifact
