@@ -56,33 +56,14 @@ jobs:
     - name: Setup
       working-directory: ./semantic
       run: |
+          echo ${{ steps.semantic_release_info.outputs.git_head }}
+          echo ${{ steps.semantic_release_info.outputs.git_tag }}
+          echo ${{ steps.semantic_release_info.outputs.version }}
+          echo ${{ steps.semantic_release_info.outputs.name }}
           echo ${{steps.get_message.outputs.sha}}
           echo ${{steps.get_message.outputs.action}}
           yarn install --frozen-lockfile
           yarn build
-
-    - name: Commit files
-      run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git commit -m "docs(): bumping release ${{ steps.semantic_release_info.outputs.git_tag }}"
-          git tag ${{ steps.semantic_release_info.outputs.git_tag }}
-
-    - name: Push changes
-      uses: ad-m/github-push-action@v0.6.0
-      with:
-        github_token: ${{ github.token }}
-        tags: true
-
-    - name: Create GitHub Release
-      uses: actions/create-release@v1
-      with:
-        tag_name: ${{ steps.semantic_release_info.outputs.git_tag }}
-        release_name: ${{ steps.semantic_release_info.outputs.git_tag }}
-        body: ${{ steps.semantic_release_info.outputs.notes }}
-        draft: false
-        prerelease: false
 
     - name: Dry Run
       if: steps.branch-name.outputs.is_default == 'false'
