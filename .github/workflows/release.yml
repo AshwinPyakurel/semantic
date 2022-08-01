@@ -57,6 +57,7 @@ jobs:
           yarn build
 
     - name: Create Artifact
+      working-directory: ./semantic
       if: "!contains(github.head_ref, 'release')"
       id: create_artifact
       run: |
@@ -66,7 +67,6 @@ jobs:
         SERVICE=${{ matrix.service }}
         VERSION=${SERVICE}+build.${BUILD_NUM}.${TIMESTAMP}.${BUILD_ID}
         ARTIFACT_NAME=${VERSION}.zip
-        mkdir -p /app/.apt/usr/lib/gcc/x86_64-linux-gnu/$GCC_VERSION
         cp pm2.config.js package.json .npmrc appspec.yml dist/
         cd dist && zip -r9q ${{ github.workspace }}/${ARTIFACT_NAME} . && cd ..
         ls -al ${{ github.workspace }}
