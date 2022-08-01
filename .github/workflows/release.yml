@@ -77,6 +77,7 @@ jobs:
     - name: Outputs
       run: |
           echo ${{steps.create_artifact.outputs.artifact_name}}
+          echo ${{steps.create_artifact.outputs.version}}
           echo ${{steps.get_message.outputs.sha}}
           echo ${{steps.get_message.outputs.action}}
 
