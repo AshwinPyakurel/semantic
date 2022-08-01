@@ -62,10 +62,7 @@ jobs:
       id: create_artifact
       run: |
         BUILD_NUM=$(echo $GITHUB_RUN_NUMBER)
-        TIMESTAMP=$(date -u +%Y%m%d%H%M%S)
-        BUILD_ID=$(echo $GITHUB_SHA | head -c7)
-        SERVICE=${{ matrix.service }}
-        VERSION=${SERVICE}+build.${BUILD_NUM}.${TIMESTAMP}.${BUILD_ID}
+        VERSION=generators-build.${BUILD_NUM}.${github.sha}
         ARTIFACT_NAME=${VERSION}.zip
         cp package.json dist/
         cd dist && zip -r9q ${{ github.workspace }}/${ARTIFACT_NAME} . && cd ..
