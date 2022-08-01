@@ -64,6 +64,7 @@ jobs:
       if: steps.branch-name.outputs.is_default == 'false'
       working-directory: ./semantic
       run: |
+          yarn build
           yarn semantic-release --dry-run --no-ci
 
     # - name: Build Artifact
