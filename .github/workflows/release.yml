@@ -80,6 +80,11 @@ jobs:
         path: ./${{ steps.create_artifact.outputs.artifact_name }}
         retention-days: 14
 
+    - name: Download a single artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: ${{steps.create_artifact.outputs.artifact_name}}
+
     - name: Outputs
       run: |
           echo ${{steps.create_artifact.outputs.artifact_name}}
