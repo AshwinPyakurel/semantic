@@ -57,25 +57,38 @@ jobs:
           yarn build
 
     - name: Create Artifact
-      if: "!contains(github.base_ref, 'main')"
+      working-directory: ./semantic
+      if: github.event.pull_request.merged == true
       id: create_artifact
       run: |
         BUILD_NUM=$(echo $GITHUB_RUN_NUMBER)
-        TIMESTAMP=$(date -u +%Y%m%d%H%M%S)
         BUILD_ID=$(echo $GITHUB_SHA | head -c7)
-        SERVICE=${{ matrix.service }}
-        VERSION=${SERVICE}+build.${BUILD_NUM}.${TIMESTAMP}.${BUILD_ID}
+        VERSION=generators+build.${BUILD_NUM}.${BUILD_ID}
         ARTIFACT_NAME=${VERSION}.zip
-        cp pm2.config.js package.json .npmrc appspec.yml dist/
+        cp package.json dist/
         cd dist && zip -r9q ${{ github.workspace }}/${ARTIFACT_NAME} . && cd ..
         ls -al ${{ github.workspace }}
         echo $ARITFACT_NAME
         echo ::set-output name=version::${VERSION}
         echo ::set-output name=artifact_name::${ARTIFACT_NAME}
 
+    - name: Upload Artifact
+      if: "github.event.pull_request.merged == true && !contains(github.head_ref, 'release')"
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ steps.create_artifact.outputs.version }}
+        path: ./${{ steps.create_artifact.outputs.artifact_name }}
+        retention-days: 14
+
+    - name: Download a single artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: ${{steps.create_artifact.outputs.version}}
+
     - name: Outputs
       run: |
           echo ${{steps.create_artifact.outputs.artifact_name}}
+          echo ${{steps.create_artifact.outputs.version}}
           echo ${{steps.get_message.outputs.sha}}
           echo ${{steps.get_message.outputs.action}}
 
@@ -85,12 +98,6 @@ jobs:
       run: |
           yarn build
           yarn semantic-release --dry-run --no-ci
-
-    # - name: Build Artifact
-    #   if: contains(steps.get_message.outputs.title,'Merge pull request') && !contains(steps.get_message.outputs.title,'release')
-    #   working-directory: ./semantic
-    #   run:
-
 
     - name: Release
       if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
