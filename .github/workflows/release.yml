@@ -58,7 +58,8 @@ jobs:
 
     - name: Create Artifact
       working-directory: ./semantic
-      if: github.event.pull_request.merged == true
+      if: contains(steps.get_message.outputs.title,'Merge pull request')
+      # if: "contains(github.base_ref, 'main') && contains(github.head_ref, 'release')"
       id: create_artifact
       run: |
         BUILD_NUM=$(echo $GITHUB_RUN_NUMBER)
@@ -73,7 +74,8 @@ jobs:
         echo ::set-output name=artifact_name::${ARTIFACT_NAME}
 
     - name: Upload Artifact
-      if: "github.event.pull_request.merged == true && !contains(github.head_ref, 'release')"
+      if: contains(steps.get_message.outputs.title,'Merge pull request') && !contains(steps.get_message.outputs.title,'release')
+      # if: "contains(github.base_ref, 'main') && !contains(github.head_ref, 'release')"
       uses: actions/upload-artifact@v2
       with:
         name: ${{ steps.create_artifact.outputs.version }}
@@ -87,6 +89,7 @@ jobs:
 
     - name: Outputs
       run: |
+          echo ${{github.base_ref}}
           echo ${{steps.create_artifact.outputs.artifact_name}}
           echo ${{steps.create_artifact.outputs.version}}
           echo ${{steps.get_message.outputs.sha}}
