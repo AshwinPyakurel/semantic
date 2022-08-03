@@ -87,6 +87,7 @@ jobs:
 
     - name: Outputs
       run: |
+          echo ${{github.base_ref}}
           echo ${{steps.create_artifact.outputs.artifact_name}}
           echo ${{steps.create_artifact.outputs.version}}
           echo ${{steps.get_message.outputs.sha}}
