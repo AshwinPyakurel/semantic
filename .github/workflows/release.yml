@@ -73,7 +73,7 @@ jobs:
         echo ::set-output name=artifact_name::${ARTIFACT_NAME}
 
     - name: Upload Artifact
-      if: "!contains(github.head_ref, 'release')"
+      if: github.event.pull_request.merged == true && "!contains(github.head_ref, 'release')"
       uses: actions/upload-artifact@v2
       with:
         name: ${{ steps.create_artifact.outputs.version }}
