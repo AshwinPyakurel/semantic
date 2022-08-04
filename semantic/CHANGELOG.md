@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/AshwinPyakurel/semantic/compare/semantic@1.6.0...semantic@1.7.0) (2022-07-28)
+
+
+### Features
+
+* thth ([8a6c9eb](https://github.com/AshwinPyakurel/semantic/commit/8a6c9eb6c9769c0a9e404c29c098b30436a61737))
+
 # [1.6.0](https://github.com/AshwinPyakurel/semantic/compare/semantic@1.5.0...semantic@1.6.0) (2022-07-28)
 
 

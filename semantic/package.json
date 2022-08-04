@@ -25,6 +25,7 @@
     ]
   },
   "publishConfig": {
-    "registry": "http://nexus.dsv.myhost/nexus/repository/npmjs"
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest"
   }
 }
