@@ -8,4 +8,6 @@ plugins:
   - "@semantic-release/github"
   - "@semantic-release/changelog"
   - "@semantic-release/git"
+  - "@semantic-release/npm"
+  - - npmPublish: false
 tagFormat: semantic@${version}
