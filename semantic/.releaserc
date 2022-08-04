@@ -1,8 +1,5 @@
 branches:
   - main
-  - channel: release
-    name: release/*
-    prerelease: true
 debug: true
 ci: flase
 plugins:
