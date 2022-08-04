@@ -39,10 +39,6 @@ jobs:
           echo '::set-output name=action::${{ github.ref }}'
       id: get_message
 
-    - name: Get Previous tag
-      id: previoustag
-      uses: "WyriHaximus/github-action-get-previous-tag@v1"
-
     - name: Setup
       working-directory: ./semantic
       run: |
@@ -73,6 +69,15 @@ jobs:
         path: ./${{ steps.create_build_artifact.outputs.artifact_name }}
         retention-days: 14
 
+    - name: Release
+      if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
+      working-directory: ./semantic
+      run: yarn semantic-release
+
+    - name: Get Previous tag
+      id: previoustag
+      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
     - name: Create Release Artifact
       working-directory: ./semantic
       if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
@@ -90,11 +95,6 @@ jobs:
     - name: Outputs
       run: |
           echo ${{steps.create_release_artifact.outputs.artifact_name}}
-
-    - name: Release
-      if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
-      working-directory: ./semantic
-      run: yarn semantic-release
 
     # - name: Configure AWS credentials
     #   if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release')
