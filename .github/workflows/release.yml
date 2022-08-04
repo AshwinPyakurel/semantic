@@ -85,7 +85,7 @@ jobs:
       if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
       id: create_release_artifact
       run: |
-        VERSION=s3://com.laudio.artifacts/releases/generators/${{ steps.previoustag.outputs.tag }}
+        VERSION=${{ steps.previoustag.outputs.tag }}
         ARTIFACT_NAME=${VERSION}.zip
         cp package.json dist/
         cd dist && zip -r9q ${{ github.workspace }}/${ARTIFACT_NAME} . && cd ..
@@ -107,8 +107,12 @@ jobs:
     #     source_dir: ./${{steps.create_artifact.outputs.artifact_name}}
 
     - name: Publish Artifact to s3
+      if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release')
+      env:
+          ARTIFACT_NAME: ${{ steps.create_release_artifact.outputs.artifact_name }}
+          ARTIFACT_REPO: s3://com.laudio.artifacts/releases/generators/
       run: |
-          echo ${{ steps.previoustag.outputs.tag }}
+        aws s3 cp ${ARTIFACT_NAME} ${ARTIFACT_REPO}/${ARTIFACT_NAME}
 
 
 
