@@ -1,3 +1,32 @@
+# [1.8.0](https://github.com/AshwinPyakurel/semantic/compare/semantic@1.7.0...semantic@1.8.0) (2022-08-04)
+
+
+### Features
+
+* Add upload artifact  to s3 ([279c78b](https://github.com/AshwinPyakurel/semantic/commit/279c78b2549f84448a32c0572a93dc2aeca08b18))
+* Add upload artifact  to s3 ([55011c2](https://github.com/AshwinPyakurel/semantic/commit/55011c2803e65ee08f9383388f7298b38cd96148))
+* Add upload artifact  to s3 ([2e9a81c](https://github.com/AshwinPyakurel/semantic/commit/2e9a81c398ff89fd6d3994d24352d3c31f42eaab))
+* hello ([50ef18b](https://github.com/AshwinPyakurel/semantic/commit/50ef18b41a2ca2ac915c74c18fdcf22b79b93150))
+* hello ([287793d](https://github.com/AshwinPyakurel/semantic/commit/287793df5e9a6b2de8e446d2a33e9abc00f3c2f8))
+* hello ([07f8c65](https://github.com/AshwinPyakurel/semantic/commit/07f8c65aef77b06c5e6872e0753abed211abadf9))
+* hello ([d3ac09a](https://github.com/AshwinPyakurel/semantic/commit/d3ac09aba4d1776bcb54f6daedddc8cb0cd68e1c))
+* hello ([b713dbb](https://github.com/AshwinPyakurel/semantic/commit/b713dbbc9b3a2d389111b4dfccf6da44d28e0635))
+* hello ([f33328a](https://github.com/AshwinPyakurel/semantic/commit/f33328a2a3cfa00d2ca3d923ce0257f31bbd15ce))
+* hello ([2e32a44](https://github.com/AshwinPyakurel/semantic/commit/2e32a442ded4d2579bb161d53d884bea0cc72311))
+* hello ([36fb629](https://github.com/AshwinPyakurel/semantic/commit/36fb6293eefd01c33656f226749a25be3e8b80d1))
+* hello ([f4971a4](https://github.com/AshwinPyakurel/semantic/commit/f4971a4f93a982805b6d99fad19c4a04b47f5058))
+* hello ([ba0e614](https://github.com/AshwinPyakurel/semantic/commit/ba0e614c3532e58661175c0e98c420b6b6a5a177))
+* hello ([48e1240](https://github.com/AshwinPyakurel/semantic/commit/48e1240810f27ab2247fb7fadac4c75ec7d44bb2))
+* hello ([067c461](https://github.com/AshwinPyakurel/semantic/commit/067c4614472940bef21492679b268aa125b7b13c))
+* hello ([c0b7765](https://github.com/AshwinPyakurel/semantic/commit/c0b7765d51f1af1cc4d6fb8bfb0bd46bf7f6c70b))
+* hello ([32ceb75](https://github.com/AshwinPyakurel/semantic/commit/32ceb759276005f0856a86533bd427ae8b69d715))
+* hello ([b73d248](https://github.com/AshwinPyakurel/semantic/commit/b73d24865311f963bb6443aa7cb2752206ec777b))
+* hello ([0044038](https://github.com/AshwinPyakurel/semantic/commit/0044038449d83a390ac7ea05773e411b753250cd))
+* hello ([850aa77](https://github.com/AshwinPyakurel/semantic/commit/850aa7784b2b61aa6b8d03e2c8f77b4b34d7ba27))
+* make ts ([5c9e030](https://github.com/AshwinPyakurel/semantic/commit/5c9e0306982e6440a0eb67fcd56abe921b98aa16))
+* release ([737f6b8](https://github.com/AshwinPyakurel/semantic/commit/737f6b8da12634045174b061ae0c489a43c02066))
+* what ([3570d87](https://github.com/AshwinPyakurel/semantic/commit/3570d870b3cee4f4cc3a7c9fadc89e0528fd6e94))
+
 # [1.7.0](https://github.com/AshwinPyakurel/semantic/compare/semantic@1.6.0...semantic@1.7.0) (2022-07-28)
 
 
