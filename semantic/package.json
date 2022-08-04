@@ -23,5 +23,8 @@
     "branches": [
       "main"
     ]
+  },
+  "publishConfig": {
+    "registry": "http://nexus.dsv.myhost/nexus/repository/npmjs"
   }
 }
