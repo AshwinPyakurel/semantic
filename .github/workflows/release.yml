@@ -90,10 +90,10 @@ jobs:
     #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     #     source_dir: ./${{steps.create_artifact.outputs.artifact_name}}
 
-    - name: Download a single artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: ${{steps.create_artifact.outputs.version}}
+    # - name: Download a single artifact
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #     name: ${{steps.create_artifact.outputs.version}}
 
     - name: Outputs
       run: |
