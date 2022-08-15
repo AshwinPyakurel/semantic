@@ -45,9 +45,8 @@ jobs:
           context: ./semantic
           file: ./semantic/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
-          target: main
           push: false
-          load: true
+          load: false
           tags: generators/test
 
       - name: Lookup Images
