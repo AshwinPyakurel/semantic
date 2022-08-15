@@ -52,6 +52,7 @@ jobs:
           push: false
           load: false
           tags: generators/test
+          labels: ${{steps.metadata.outputs.labels}}
 
       - name: Lookup Images
         run: |
