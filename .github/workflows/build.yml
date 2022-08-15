@@ -38,7 +38,7 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v4
         with:
-          images: ${{ github.event.repository.name }}
+          images: generators
       # Build the docker image.
       # TODO: Push the image to ECR or Docker Hub and enable dynamic tags.
       #
@@ -57,7 +57,6 @@ jobs:
       - name: Lookup Images
         run: |
           echo ${{steps.metadata.outputs.tags}}
-          echo ${{steps.metadata.outputs.labels}}
           docker images
 
       # - name: Configure AWS credentials
