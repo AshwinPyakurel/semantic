@@ -4,4 +4,4 @@ COPY . /
 
 WORKDIR /
 
-CMD node app.js
+CMD echo "hello"
