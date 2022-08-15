@@ -37,7 +37,8 @@ jobs:
       - name: Get Tags for Image
         id: metadata
         uses: docker/metadata-action@v4
-
+        with:
+          images: ${{ github.event.repository.name }}
       # Build the docker image.
       # TODO: Push the image to ECR or Docker Hub and enable dynamic tags.
       #
