@@ -41,7 +41,6 @@ jobs:
           images: ${{ github.event.repository.name }}
           tags: |
             type=raw,value=latest
-            type=raw,value=main
             type=sha
       # Build the docker image.
       # TODO: Push the image to ECR or Docker Hub and enable dynamic tags.
