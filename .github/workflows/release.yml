@@ -19,7 +19,7 @@ env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  build:
+  Release:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -131,5 +131,12 @@ jobs:
     #     ARTIFACT_REPO: s3://com.laudio.artifacts/releases/services/${{ matrix.appname }}
     #   run: |
     #     aws s3 cp ${ARTIFACT_NAME} ${ARTIFACT_REPO}/${ARTIFACT_NAME}
+  output:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: |
+          echo hello
+
 
 

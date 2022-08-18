@@ -50,7 +50,7 @@ jobs:
           file: ./semantic/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          load: false
+          load: true
           tags: generators/test
           labels: ${{steps.metadata.outputs.labels}}
 
