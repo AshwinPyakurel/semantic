@@ -132,6 +132,7 @@ jobs:
     #   run: |
     #     aws s3 cp ${ARTIFACT_NAME} ${ARTIFACT_REPO}/${ARTIFACT_NAME}
   output:
+    needs: Release
     runs-on: ubuntu-latest
     steps:
       - name: print
