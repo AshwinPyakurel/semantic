@@ -137,7 +137,7 @@ jobs:
     steps:
       - name: print
         run: |
-          echo hello
+          echo ${{steps.previoustag.outputs.tag}}
 
 
 
