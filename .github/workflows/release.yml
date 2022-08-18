@@ -131,13 +131,15 @@ jobs:
     #     ARTIFACT_REPO: s3://com.laudio.artifacts/releases/services/${{ matrix.appname }}
     #   run: |
     #     aws s3 cp ${ARTIFACT_NAME} ${ARTIFACT_REPO}/${ARTIFACT_NAME}
+    outputs:
+      previoustag: ${{steps.previoustag.outputs.tag}}
   output:
     needs: Release
     runs-on: ubuntu-latest
     steps:
       - name: print
         run: |
-          echo ${{steps.previoustag.outputs.tag}}
+          echo ${{needs.Release.outputs.previoustag}}
 
 
 
