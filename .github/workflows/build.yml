@@ -50,7 +50,6 @@ jobs:
           file: ./semantic/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          load: true
           tags: generators/test
           labels: ${{steps.metadata.outputs.labels}}
 
@@ -77,5 +76,3 @@ jobs:
       #     IMAGE_TAG: ${{github.sha}}
       #   run: |
       #     docker push {ECR_REGISTRY}/{ECR_REPOSITORY}
-
-
