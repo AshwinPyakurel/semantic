@@ -1,3 +1,10 @@
+# [semantic-test-v1.0.1](https://github.com/AshwinPyakurel/semantic/compare/release@1.0.0...release@1.0.1) (2022-11-07)
+
+
+### Bug Fixes
+
+* hello this is change in somewhere ([12c6667](https://github.com/AshwinPyakurel/semantic/commit/12c6667074502e5f7cb964d46853c0fd231f73a6))
+
 # 1.0.0 (2022-09-06)
 
 
