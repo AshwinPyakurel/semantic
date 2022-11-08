@@ -4,16 +4,16 @@ on:
     branches:
       - main
       - next
-    # paths:
-    #   - semantic/**/*
+    paths:
+      - semantic/**/*
 
   pull_request:
     branches:
       - main
       - next
     types: [synchronize, closed, opened]
-    # paths:
-    #   - semantic/**/*
+    paths:
+      - semantic/**/*
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
