@@ -111,7 +111,7 @@ jobs:
           yarn semantic-release -e semantic-release-monorepo --dry-run --no-ci
 
     - name: Release
-      working-directory: test-second
+      working-directory: ./semantic
       # if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
       run: yarn semantic-release -e semantic-release-monorepo
 

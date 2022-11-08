@@ -1,5 +1,5 @@
 Arguments: 
-  /home/ashwin/.nvm/versions/node/v16.18.0/bin/node /home/ashwin/.nvm/versions/node/v16.18.0/bin/yarn
+  /home/ashwin/.nvm/versions/node/v16.18.0/bin/node /home/ashwin/.nvm/versions/node/v16.18.0/bin/yarn add semantic-release _D
 
 PATH: 
   /home/ashwin/.nvm/versions/node/v16.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.UbuntuonWindows_2004.2022.1.0_x64__79rhkp1fndgsc:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Users/Leapfrog/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Leapfrog/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
@@ -14,7 +14,17 @@ Platform:
   linux x64
 
 Trace: 
-  Error: ENOENT: no such file or directory, copyfile '/home/ashwin/.cache/yarn/v6/npm-@gar-promisify-1.1.3-555193ab2e3bb3b6adc3d551c9c030d9e860daf6-integrity/node_modules/@gar/promisify/LICENSE.md' -> '/home/ashwin/leapfrog/semantic/test-second/node_modules/@gar/promisify/LICENSE.md'
+  Error: https://registry.yarnpkg.com/_D: Not found
+      at Request.params.callback [as _callback] (/home/ashwin/.nvm/versions/node/v16.18.0/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at Request.self.callback (/home/ashwin/.nvm/versions/node/v16.18.0/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:513:28)
+      at Request.<anonymous> (/home/ashwin/.nvm/versions/node/v16.18.0/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:513:28)
+      at IncomingMessage.<anonymous> (/home/ashwin/.nvm/versions/node/v16.18.0/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:627:28)
+      at IncomingMessage.emit (node:events:525:35)
+      at endReadableNT (node:internal/streams/readable:1358:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
   {
