@@ -1,1 +1,1 @@
-console.log("hellooooo nnnoooo yassss GG okay hh GG cha ta");
+console.log("hellooooo hello GG okay cha ta");
