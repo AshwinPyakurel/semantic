@@ -51,7 +51,7 @@ jobs:
 
 
     - name: Setup
-      working-directory: ./semantic
+      working-directory: ./test-first
       run: |
           yarn install --frozen-lockfile
           yarn build
