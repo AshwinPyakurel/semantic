@@ -54,7 +54,6 @@ jobs:
       working-directory: ./test-first
       run: |
           yarn install --frozen-lockfile
-          yarn build
 
     # - name: Create Artifact
     #   working-directory: ./semantic
