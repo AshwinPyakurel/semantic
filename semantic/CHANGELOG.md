@@ -1,3 +1,10 @@
+# [semantic-test-v1.0.2](https://github.com/AshwinPyakurel/semantic/compare/release@1.0.1...release@1.0.2) (2022-11-07)
+
+
+### Bug Fixes
+
+* Random fix on two ([d9907d1](https://github.com/AshwinPyakurel/semantic/commit/d9907d1f4bab6c99213c041c94776e729459395c))
+
 # [semantic-test-v1.0.1](https://github.com/AshwinPyakurel/semantic/compare/release@1.0.0...release@1.0.1) (2022-11-07)
 
 
