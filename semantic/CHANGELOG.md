@@ -1,3 +1,10 @@
+# [semantic-test-v1.2.0](https://github.com/AshwinPyakurel/semantic/compare/release@1.1.2...release@1.2.0) (2022-11-08)
+
+
+### Features
+
+* Check semantic need to release ([3f1c1a7](https://github.com/AshwinPyakurel/semantic/commit/3f1c1a77ab690e97e73a5a8e63ea899be7238a9f))
+
 # [semantic-test-v1.1.2](https://github.com/AshwinPyakurel/semantic/compare/release@1.1.1...release@1.1.2) (2022-11-08)
 
 
