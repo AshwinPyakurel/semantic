@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/AshwinPyakurel/semantic/compare/release@1.1.0...release@1.1.1) (2022-11-08)
+
+
+### Bug Fixes
+
+* Write on test this should not release ([057a8b2](https://github.com/AshwinPyakurel/semantic/commit/057a8b2ced8876e312fd1c8d61c788e35cc0aa3e))
+
 # [1.1.0](https://github.com/AshwinPyakurel/semantic/compare/release@1.0.2...release@1.1.0) (2022-11-08)
 
 
