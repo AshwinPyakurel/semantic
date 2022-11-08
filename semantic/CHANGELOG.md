@@ -1,3 +1,10 @@
+# [semantic-test-v1.1.2](https://github.com/AshwinPyakurel/semantic/compare/release@1.1.1...release@1.1.2) (2022-11-08)
+
+
+### Bug Fixes
+
+* Write on test this should not monorepo release ([26dfc37](https://github.com/AshwinPyakurel/semantic/commit/26dfc3720fd3c1bba2c04ffaba674e934485124e))
+
 ## [1.1.1](https://github.com/AshwinPyakurel/semantic/compare/release@1.1.0...release@1.1.1) (2022-11-08)
 
 
