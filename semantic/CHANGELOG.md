@@ -1,3 +1,25 @@
+# [1.1.0](https://github.com/AshwinPyakurel/semantic/compare/release@1.0.2...release@1.1.0) (2022-11-08)
+
+
+### Bug Fixes
+
+* any ([3fd70fb](https://github.com/AshwinPyakurel/semantic/commit/3fd70fbc7a257234031598df24b1da3d71f5bf52))
+* any ([67f108a](https://github.com/AshwinPyakurel/semantic/commit/67f108a7a2b9f50c9cfcba9d085ff28ca5e7ff86))
+* change tag format ([5db83c4](https://github.com/AshwinPyakurel/semantic/commit/5db83c4c4e2ca91f45cd490b4890757ced4555ae))
+* check check ([d7d57ed](https://github.com/AshwinPyakurel/semantic/commit/d7d57ed27e31e4e11131a32bb5f441864bc1fc9c))
+* check check ([88cda90](https://github.com/AshwinPyakurel/semantic/commit/88cda903cc1dd2d69335240f815da06fa252ba3c))
+* test ad ([8cdeb2c](https://github.com/AshwinPyakurel/semantic/commit/8cdeb2cb6e8e220a6d66f6e1d2a528a307657ca2))
+* test test ([4c1c277](https://github.com/AshwinPyakurel/semantic/commit/4c1c277ed520d8b9099cadb818ed1f81defdb4e3))
+
+
+### Features
+
+* fix test ([2832e77](https://github.com/AshwinPyakurel/semantic/commit/2832e7776dd5bca6fabf55a2cee0e95473f7b5d9))
+* GG ([2f1caf9](https://github.com/AshwinPyakurel/semantic/commit/2f1caf9d80b966ea1381c043b49175d7a2e1cee4))
+* GG ([2c943ae](https://github.com/AshwinPyakurel/semantic/commit/2c943ae615b61f0ffe78dd67d75661fcdb752195))
+* GG ([02e848d](https://github.com/AshwinPyakurel/semantic/commit/02e848da36872ee08edc2ff8e99486543f4e90a4))
+* GG ([2714943](https://github.com/AshwinPyakurel/semantic/commit/2714943ef8ddbd57b7a2a8dac734917d9ee706d9))
+
 # [2.18.0](https://github.com/AshwinPyakurel/semantic/compare/v2.17.0...v2.18.0) (2022-11-08)
 
 
