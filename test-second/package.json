@@ -1,0 +1,10 @@
+{
+  "name": "test-second",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "semantic-release": "^19.0.3",
+    "semantic-release-monorepo": "^7.0.5"
+  }
+}
