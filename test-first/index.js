@@ -1,1 +1,1 @@
-console.log("HELLOOOOOOOOO kjasdhflk ausdhfakjgsd ajgfakjhdsgasdfha aksjdhal");
+console.log("HELLOOOOOOOOO");
