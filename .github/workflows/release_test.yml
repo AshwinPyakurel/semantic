@@ -5,7 +5,7 @@ on:
       - main
       - next
     paths:
-      - test-second/**/*
+      - test-first/**/*
 
   pull_request:
     branches:
@@ -13,7 +13,7 @@ on:
       - next
     types: [synchronize, closed, opened]
     paths:
-      - test-second/**/*
+      - test-first/**/*
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -105,13 +105,13 @@ jobs:
 
     - name: Dry Run
       if: steps.branch-name.outputs.is_default == 'false'
-      working-directory: ./test-second
+      working-directory: ./test-first
       run: |
           yarn build
           yarn semantic-release -e semantic-release-monorepo --dry-run --no-ci
 
     - name: Release
-      working-directory: ./test-second
+      working-directory: ./test-first
       # if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
       run: yarn semantic-release -e semantic-release-monorepo
 
