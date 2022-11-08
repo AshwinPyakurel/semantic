@@ -1,3 +1,10 @@
+# [test-first-v1.1.0](https://github.com/AshwinPyakurel/semantic/compare/test-first@1.0.0...test-first@1.1.0) (2022-11-08)
+
+
+### Features
+
+* Hello ([5feb61d](https://github.com/AshwinPyakurel/semantic/commit/5feb61de17a7d6afb12d993ed7fdaf1d1a1f82d9))
+
 # test-first-v1.0.0 (2022-11-08)
 
 
