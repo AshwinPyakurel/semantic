@@ -56,31 +56,31 @@ jobs:
           yarn install --frozen-lockfile
           yarn build
 
-    - name: Create Artifact
-      working-directory: ./semantic
-      if: contains(steps.get_message.outputs.title,'Merge pull request')
-      # if: "contains(github.base_ref, 'main') && contains(github.head_ref, 'release')"
-      id: create_artifact
-      run: |
-        BUILD_NUM=$(echo $GITHUB_RUN_NUMBER)
-        BUILD_ID=$(echo $GITHUB_SHA | head -c7)
-        VERSION=generators+build.${BUILD_NUM}.${BUILD_ID}
-        ARTIFACT_NAME=${VERSION}.zip
-        cp package.json dist/
-        cd dist && zip -r9q ${{ github.workspace }}/${ARTIFACT_NAME} . && cd ..
-        ls -al ${{ github.workspace }}
-        echo $ARITFACT_NAME
-        echo ::set-output name=version::${VERSION}
-        echo ::set-output name=artifact_name::${ARTIFACT_NAME}
+    # - name: Create Artifact
+    #   working-directory: ./semantic
+    #   if: contains(steps.get_message.outputs.title,'Merge pull request')
+    #   # if: "contains(github.base_ref, 'main') && contains(github.head_ref, 'release')"
+    #   id: create_artifact
+    #   run: |
+    #     BUILD_NUM=$(echo $GITHUB_RUN_NUMBER)
+    #     BUILD_ID=$(echo $GITHUB_SHA | head -c7)
+    #     VERSION=generators+build.${BUILD_NUM}.${BUILD_ID}
+    #     ARTIFACT_NAME=${VERSION}.zip
+    #     cp package.json dist/
+    #     cd dist && zip -r9q ${{ github.workspace }}/${ARTIFACT_NAME} . && cd ..
+    #     ls -al ${{ github.workspace }}
+    #     echo $ARITFACT_NAME
+    #     echo ::set-output name=version::${VERSION}
+    #     echo ::set-output name=artifact_name::${ARTIFACT_NAME}
 
-    - name: Upload Artifact
-      if: contains(steps.get_message.outputs.title,'Merge pull request') && !contains(steps.get_message.outputs.title,'release')
-      # if: "contains(github.base_ref, 'main') && !contains(github.head_ref, 'release')"
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ steps.create_artifact.outputs.version }}
-        path: ./${{ steps.create_artifact.outputs.artifact_name }}
-        retention-days: 14
+    # - name: Upload Artifact
+    #   if: contains(steps.get_message.outputs.title,'Merge pull request') && !contains(steps.get_message.outputs.title,'release')
+    #   # if: "contains(github.base_ref, 'main') && !contains(github.head_ref, 'release')"
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: ${{ steps.create_artifact.outputs.version }}
+    #     path: ./${{ steps.create_artifact.outputs.artifact_name }}
+    #     retention-days: 14
 
     # - name: Configure AWS credentials
     #   if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release')
@@ -105,25 +105,15 @@ jobs:
 
     - name: Dry Run
       if: steps.branch-name.outputs.is_default == 'false'
-      working-directory: ./semantic
+      working-directory: ./test-second
       run: |
           yarn build
           yarn semantic-release -e semantic-release-monorepo --dry-run --no-ci
 
     - name: Release
-      working-directory: ./semantic
+      working-directory: ./test-second
       # if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
       run: yarn semantic-release -e semantic-release-monorepo
-
-    - name: Get Previous tag
-      id: previoustag
-      uses: "WyriHaximus/github-action-get-previous-tag@v1"
-      with:
-          fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
-
-    - name: Publish Artifact to s3
-      run: |
-          echo ${{ steps.previoustag.outputs.tag }}
 
     # - name: Publish Artifact to s3
     #   env:
@@ -131,12 +121,3 @@ jobs:
     #     ARTIFACT_REPO: s3://com.laudio.artifacts/releases/services/${{ matrix.appname }}
     #   run: |
     #     aws s3 cp ${ARTIFACT_NAME} ${ARTIFACT_REPO}/${ARTIFACT_NAME}
-    outputs:
-      previoustag: ${{steps.previoustag.outputs.tag}}
-  output:
-    needs: Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: print
-        run: |
-          echo ${{needs.Release.outputs.previoustag}}
