@@ -8,5 +8,4 @@ plugins:
   - "@semantic-release/github"
   - "@semantic-release/changelog"
   - "@semantic-release/git"
-extends: semantic-release-monorepo
 # tagFormat: release@${version}
