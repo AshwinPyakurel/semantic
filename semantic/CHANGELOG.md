@@ -1,3 +1,10 @@
+# [semantic-test-v1.3.0](https://github.com/AshwinPyakurel/semantic/compare/release@1.2.0...release@1.3.0) (2022-11-08)
+
+
+### Features
+
+* hello to the world ([d2a42b6](https://github.com/AshwinPyakurel/semantic/commit/d2a42b6c07996dfc7e72a7dcf9ae5df8e8139fa4))
+
 # [semantic-test-v1.2.0](https://github.com/AshwinPyakurel/semantic/compare/release@1.1.2...release@1.2.0) (2022-11-08)
 
 
