@@ -1,3 +1,10 @@
+# [semantic-test-v1.4.0](https://github.com/AshwinPyakurel/semantic/compare/release@1.3.0...release@1.4.0) (2022-11-15)
+
+
+### Features
+
+* Hello ([5feb61d](https://github.com/AshwinPyakurel/semantic/commit/5feb61de17a7d6afb12d993ed7fdaf1d1a1f82d9))
+
 # [semantic-test-v1.3.0](https://github.com/AshwinPyakurel/semantic/compare/release@1.2.0...release@1.3.0) (2022-11-08)
 
 
