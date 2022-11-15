@@ -38,9 +38,7 @@ jobs:
 
     - name: Get latest commit message
       run: |
-          echo '::set-output name=title::${{ github.event.head_commit.message }}'
-          echo '::set-output name=sha::${{ github.sha }}'
-          echo '::set-output name=action::${{ github.ref }}'
+          echo 'title=${{ github.event.head_commit.message }}' >> GITHUB_ENV
       id: get_message
 
     # - name: Generate build number
@@ -48,6 +46,9 @@ jobs:
     #   with:
     #     token: ${{secrets.github_token}}
     #   id: buildnumber
+    
+    - name: Check
+      run: echo ${{env.title}}
 
 
     - name: Setup
