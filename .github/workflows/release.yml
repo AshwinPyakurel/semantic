@@ -38,8 +38,7 @@ jobs:
 
     - name: Get latest commit message
       run: |
-          echo "${{steps.get_message.outputs._1}}"
-          
+          echo "${{steps.get_message_split.outputs._1}}"
       id: get_message
 
     # - name: Generate build number
