@@ -29,10 +29,17 @@ jobs:
       id: branch-name
       uses: tj-actions/branch-names@v5.4
 
+    - name: split
+      id: get_message_split
+      uses: rishabhgupta/split-by@v1
+      with:
+          string: ${{ github.event.head_commit.message }}
+          split-by: '\n'
+
     - name: Get latest commit message
       run: |
-          echo "${{github.event.head_commit_message}}" | tr -d '\n'
-          echo "title=${{ github.event.head_commit.message }}" >> $GITHUB_ENV
+          echo ${{steps.get_message.outputs._1}}
+          echo "title=${{ steps.get_message.outputs._1 }}" >> $GITHUB_ENV
       id: get_message
 
     # - name: Generate build number
