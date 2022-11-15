@@ -7,14 +7,6 @@ on:
     paths:
       - semantic/**/*
 
-  pull_request:
-    branches:
-      - main
-      - next
-    types: [synchronize, closed, opened]
-    paths:
-      - semantic/**/*
-
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
