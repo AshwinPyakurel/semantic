@@ -38,7 +38,7 @@ jobs:
 
     - name: Get latest commit message
       run: |
-          echo ${{steps.get_message.outputs._1}}
+          echo ${steps.get_message.outputs._1}
           echo "title=${{ steps.get_message.outputs._1 }}" >> $GITHUB_ENV
       id: get_message
 
