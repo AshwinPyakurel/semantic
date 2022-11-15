@@ -30,7 +30,7 @@ jobs:
 
     - name: Get latest commit message
       run: |
-          echo "${{ github.event.head_commit.message }}"
+          echo ${{ github.event.head_commit.message }}
           echo "title=${{ github.event.head_commit.message }}" >> $GITHUB_ENV
       id: get_message
 
