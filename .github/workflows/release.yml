@@ -30,7 +30,7 @@ jobs:
 
     - name: Get latest commit message
       run: |
-          echo "title=${{ github.event.head_commit.message }}" >> GITHUB_ENV
+          echo "title=${{ github.event.head_commit.message }}" >> $GITHUB_ENV
       id: get_message
 
     # - name: Generate build number
