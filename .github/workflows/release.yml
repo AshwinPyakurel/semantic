@@ -113,7 +113,7 @@ jobs:
 
     - name: Release
       working-directory: ./semantic
-      # if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
+      if: contains(env.title, 'Merge pull request') && contains(env.title, 'release/')
       run: yarn semantic-release -e semantic-release-monorepo
 
     - name: Get Previous tag
@@ -126,6 +126,10 @@ jobs:
       run: |
           echo ${{ steps.previoustag.outputs.tag }}
 
+    - name: Github Worksp
+      run: |
+        echo ${{github.workspace}}
+
     # - name: Publish Artifact to s3
     #   env:
     #     ARTIFACT_NAME: ${{ steps.create.outputs.artifact_name }}
@@ -133,11 +137,16 @@ jobs:
     #   run: |
     #     aws s3 cp ${ARTIFACT_NAME} ${ARTIFACT_REPO}/${ARTIFACT_NAME}
     outputs:
-      previoustag: ${{steps.previoustag.outputs.tag}}
-  output:
+      latest_commit: ${{env.title}}
+  Check-Output:
     needs: Release
     runs-on: ubuntu-latest
     steps:
+
+      - name: Check
+        run: echo ${{needs.Release.outputs.latest_commit}}
+
       - name: print
+        if: contains(needs.Release.outputs.latest_commit , 'hello')
         run: |
-          echo ${{needs.Release.outputs.previoustag}}
+          echo ${{needs.Release.outputs.latest_commit}}
