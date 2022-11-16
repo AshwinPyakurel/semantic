@@ -32,7 +32,7 @@ jobs:
     - name: Get latest commit message
       run: |
           trim_new_line=$(echo -e ${{github.event.head_commit.message}}|tr -d '\n')
-          trim_white_spaces=$(echo -e ${trim_new_line}|tr '[:space:]' '_')
+          trim_white_spaces=$(echo -e ${trim_new_line}|tr '[:space:]' '-')
           echo "title=${trim_white_spaces}" >> $GITHUB_ENV
       id: get_message
 
