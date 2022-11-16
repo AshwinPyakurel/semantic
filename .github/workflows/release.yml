@@ -6,6 +6,7 @@ on:
       - next
     paths:
       - semantic/**/*
+      - ./github/workflows/release.yml
 
 
 env:
@@ -32,12 +33,15 @@ jobs:
     - name: Get latest commit message
       run: |
           trim_new_line=$(echo -e "${{github.event.head_commit.message}}"|tr '\n' '_')
-          echo $trim_new_line
           echo "title=${trim_new_line}" >> $GITHUB_ENV
       id: get_message
 
+    - name: Seet titile
+      run: title="Merge pull request 82 from laudio/feat/insights/setup-release-process"
+
     - name: Check
-      run: echo ${{env.title}}
+      if: contains(${{env.title}}, 'Merge pull request') && contains(${{env.title}}, 'release/')
+      run: echo "hello"
 
 
     - name: Setup
