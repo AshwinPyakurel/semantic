@@ -30,17 +30,18 @@ jobs:
       id: branch-name
       uses: tj-actions/branch-names@v5.4
 
-    - name: Get latest commit message
-      run: |
-          trim_new_line=$(echo -e "${{github.event.head_commit.message}}"|tr '\n' '_')
-          echo "title=${trim_new_line}" >> $GITHUB_ENV
-      id: get_message
+    # - name: Get latest commit message
+    #   run: |
+    #       trim_new_line=$(echo -e "${{github.event.head_commit.message}}"|tr '\n' '_')
+    #       echo "title=${trim_new_line}" >> $GITHUB_ENV
+    #   id: get_message
 
-    - name: Seet title
-      run: title="Merge pull request 82 from laudio/feat/insights/setupprocess"
+    # - name: Seet title
+    #   run: |
+    #     echo "title='Merge pull request 82 from laudio/feat/insights/setup-release-process'" >> $GITHUB_ENV
 
     - name: Check
-      if: contains(${{env.title}}, 'Merge pull request') && contains(${{env.title}}, 'release/')
+      if: contains(${{Merge pull request 82 from laudio/feat/insights/setup-release-process}}, 'Merge pull request') && contains(${{Merge pull request 82 from laudio/feat/insights/setup-release-process}}, 'release/')
       run: echo "hello"
 
 
