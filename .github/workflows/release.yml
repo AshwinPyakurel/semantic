@@ -133,11 +133,11 @@ jobs:
     #   run: |
     #     aws s3 cp ${ARTIFACT_NAME} ${ARTIFACT_REPO}/${ARTIFACT_NAME}
     outputs:
-      previoustag: ${{steps.previoustag.outputs.tag}}
-  output:
+      latest_commit: ${{env.title}}
+  Check-Output:
     needs: Release
     runs-on: ubuntu-latest
     steps:
       - name: print
         run: |
-          echo ${{needs.Release.outputs.previoustag}}
+          echo ${{needs.Release.outputs.latest_commit}}
