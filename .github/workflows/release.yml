@@ -141,8 +141,8 @@ jobs:
 
       - name: Check
         run: echo ${{needs.Release.outputs.latest_commit}}
-        
+
       - name: print
-        if: contains(${{needs.Release.outputs.latest_commit}} , 'hello')
+        if: contains(${needs.Release.outputs.latest_commit} , 'hello')
         run: |
           echo ${{needs.Release.outputs.latest_commit}}
