@@ -31,8 +31,9 @@ jobs:
 
     - name: Get latest commit message
       run: |
-          echo ${{github.event.head_commit.message}}|tr -d '\n'
-          echo title=${{github.event.head_commit.message}}|tr -d '\n' >> $GITHUB_ENV
+          trim_new_line=$(echo -e ${{github.event.head_commit.message}}|tr -d '\n')
+          trim_white_spaces=$(echo -e ${trim_new_line}|tr '[:space:]' '')
+          echo "title=${trim_white_spaces}" >> $GITHUB_ENV
       id: get_message
 
     # - name: Generate build number
