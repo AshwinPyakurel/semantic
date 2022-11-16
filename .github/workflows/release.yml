@@ -31,16 +31,10 @@ jobs:
 
     - name: Get latest commit message
       run: |
-          trim_new_line=$(echo -e "${{github.event.head_commit.message}}"|tr -d '\n')
+          trim_new_line=$(echo -e "${{github.event.head_commit.message}}"|tr '\n' '_')
           echo $trim_new_line
           echo "title=${trim_new_line}" >> $GITHUB_ENV
       id: get_message
-
-    # - name: Generate build number
-    #   uses: einaregilsson/build-number@v3
-    #   with:
-    #     token: ${{secrets.github_token}}
-    #   id: buildnumber
 
     - name: Check
       run: echo ${{env.title}}
