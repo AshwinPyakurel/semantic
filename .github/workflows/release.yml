@@ -139,5 +139,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: print
+        if: contains(${{needs.Release.outputs.latest_commit}} , 'hello')
         run: |
-          echo ${{env.title}}
+          echo ${{needs.Release.outputs.latest_commit}}
