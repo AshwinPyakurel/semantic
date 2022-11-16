@@ -8,6 +8,12 @@ on:
       - semantic/**/*
       - .github/workflows/release.yml
 
+  pull_request:
+    branches:
+      - main
+    paths:
+      - semantic/**/*
+      - .github/workflows/release.yml
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
