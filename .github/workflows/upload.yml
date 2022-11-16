@@ -10,7 +10,6 @@ on:
 jobs:
   upload-dag:
     runs-on: ubuntu-latest
-    if: ${{inputs.upload}}
     defaults:
       run:
         working-directory: 'airflow-local-runner/dags'
