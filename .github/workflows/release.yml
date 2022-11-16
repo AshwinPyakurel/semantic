@@ -138,6 +138,10 @@ jobs:
     needs: Release
     runs-on: ubuntu-latest
     steps:
+
+      - name: Check
+        run: echo ${{needs.Release.outputs.latest_commit}}
+        
       - name: print
         if: contains(${{needs.Release.outputs.latest_commit}} , 'hello')
         run: |
