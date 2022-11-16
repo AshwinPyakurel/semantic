@@ -19,15 +19,18 @@ jobs:
       - name: Checkout
         uses: action/checkout@v3
 
-      - name: Configure AWS Credentials
-        if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release/')
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_CODEDEPLOY_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_CODEDEPLOY_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+      - name: Check branch name
+        run: ehco ${GITHUB_REF##*/}
 
-      - name: Upload dags to s3
-        if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release/')
-        run: |
-          aws s3 cp ${{github.workspace}}/airflow-local-runner/dags s3://com.laudio.artifact./dags --exclude "*" --include "**.py" 
+      # - name: Configure AWS Credentials
+      #   if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release/')
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_CODEDEPLOY_ACCESS_KEY }}
+      #     aws-secret-access-key: ${{ secrets.AWS_CODEDEPLOY_SECRET_ACCESS_KEY }}
+      #     aws-region: us-east-1
+
+      # - name: Upload dags to s3
+      #   if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release/')
+      #   run: |
+      #     aws s3 cp ${{github.workspace}}/airflow-local-runner/dags s3://com.laudio.artifact./dags --exclude "*" --include "**.py" 
