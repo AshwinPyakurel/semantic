@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: 'airflow-local-runner/dags'
+        working-directory: 'semantic'
 
     steps:
-      # - name: Checkout
-      #   uses: action/checkout@v3
+      - name: Checkout
+        uses: action/checkout@v3
 
       - name: Check branch name
         run: ehco ${GITHUB_REF##*/}
