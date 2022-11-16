@@ -36,8 +36,8 @@ jobs:
           echo "title=${trim_new_line}" >> $GITHUB_ENV
       id: get_message
 
-    - name: Seet titile
-      run: title="Merge pull request 82 from laudio/feat/insights/setup-release-process"
+    - name: Seet title
+      run: title="Merge pull request 82 from laudio/feat/insights/setupprocess"
 
     - name: Check
       if: contains(${{env.title}}, 'Merge pull request') && contains(${{env.title}}, 'release/')
