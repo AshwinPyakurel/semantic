@@ -140,4 +140,4 @@ jobs:
     steps:
       - name: print
         run: |
-          echo ${{needs.Release.outputs.latest_commit}}
+          echo ${{env.title}}
