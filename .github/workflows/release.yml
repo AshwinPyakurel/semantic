@@ -113,7 +113,7 @@ jobs:
 
     - name: Release
       working-directory: ./semantic
-      # if: contains(steps.get_message.outputs.title,'Merge pull request') && contains(steps.get_message.outputs.title,'release')
+      if: contains(env.title, 'Merge pull request') && contains(env.title, 'release/')
       run: yarn semantic-release -e semantic-release-monorepo
 
     - name: Get Previous tag
