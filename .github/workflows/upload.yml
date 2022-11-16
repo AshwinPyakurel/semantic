@@ -15,8 +15,8 @@ jobs:
         working-directory: 'airflow-local-runner/dags'
 
     steps:
-      - name: Checkout
-        uses: action/checkout@v3
+      # - name: Checkout
+      #   uses: action/checkout@v3
 
       - name: Check branch name
         run: ehco ${GITHUB_REF##*/}
