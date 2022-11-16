@@ -47,7 +47,7 @@ jobs:
         echo "title=anything" >> $GITHUB_ENV
 
     - name: Check
-      if: contains(${{env.title}}, 'Merge pull request') && contains(${{env.title}}, 'release/')
+      if: contains(env.title, 'Merge pull request') && contains(env.title, 'release/')
       run: echo "hello"
 
 
