@@ -8,6 +8,12 @@ on:
       - semantic/**/*
       - .github/workflows/release.yml
 
+  pull_request:
+    branches:
+      - main
+    paths:
+      - semantic/**/*
+      - .github/workflows/release.yml
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -36,12 +42,12 @@ jobs:
     #       echo "title=${trim_new_line}" >> $GITHUB_ENV
     #   id: get_message
 
-    # - name: Seet title
-    #   run: |
-    #     echo "title='Merge pull request 82 from laudio/feat/insights/setup-release-process'" >> $GITHUB_ENV
+    - name: Seet title
+      run: |
+        echo "title=anything" >> $GITHUB_ENV
 
     - name: Check
-      if: contains("Merge pull request 82 from laudio/feat/insights/setup-release-process", 'Merge pull request') && contains("Merge pull request 82 from laudio/feat/insights/setup-release-process", 'release/')
+      if: contains(env.title, 'Merge pull request') && contains(env.title, 'release/')
       run: echo "hello"
 
 
