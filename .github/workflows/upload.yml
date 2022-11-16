@@ -22,6 +22,10 @@ jobs:
         run: |
           echo ${GITHUB_REF##*/}
           echo "acc/dec/${{inputs.upload}}/hhhh"
+
+      - name: Check
+        if: ${{!inputs.upload}}
+        run: echo "hello"
         
 
       # - name: Configure AWS Credentials
