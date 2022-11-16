@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: action/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Check branch name
         run: ehco ${GITHUB_REF##*/}
