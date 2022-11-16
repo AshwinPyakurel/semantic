@@ -126,6 +126,10 @@ jobs:
       run: |
           echo ${{ steps.previoustag.outputs.tag }}
 
+    - name: Github Worksp
+      run: |
+        echo ${{github.workspace}}
+
     # - name: Publish Artifact to s3
     #   env:
     #     ARTIFACT_NAME: ${{ steps.create.outputs.artifact_name }}
