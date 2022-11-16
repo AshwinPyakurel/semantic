@@ -31,7 +31,7 @@ jobs:
 
     - name: Get latest commit message
       run: |
-          trim_new_line=$(echo -e ${{github.event.head_commit.message}}|tr -d '\n')
+          trim_new_line=$(echo -e "${{github.event.head_commit.message}}"|tr -d '\n')
           echo $trim_new_line
           echo "title=${trim_new_line}" >> $GITHUB_ENV
       id: get_message
