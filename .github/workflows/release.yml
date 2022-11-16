@@ -6,7 +6,7 @@ on:
       - next
     paths:
       - semantic/**/*
-      - ./github/workflows/release.yml
+      - .github/workflows/release.yml
 
 
 env:
@@ -41,7 +41,7 @@ jobs:
     #     echo "title='Merge pull request 82 from laudio/feat/insights/setup-release-process'" >> $GITHUB_ENV
 
     - name: Check
-      if: contains(${{Merge pull request 82 from laudio/feat/insights/setup-release-process}}, 'Merge pull request') && contains(${{Merge pull request 82 from laudio/feat/insights/setup-release-process}}, 'release/')
+      if: contains("Merge pull request 82 from laudio/feat/insights/setup-release-process", 'Merge pull request') && contains("Merge pull request 82 from laudio/feat/insights/setup-release-process", 'release/')
       run: echo "hello"
 
 
