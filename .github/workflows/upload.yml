@@ -24,7 +24,7 @@ jobs:
           echo "acc/dec/${{inputs.upload}}/hhhh"
 
       - name: Check
-        if: ${{input.upload}} == ' '
+        if: $input.upload == ' '
         run: |
           echo "hello"
 
