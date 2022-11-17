@@ -24,7 +24,7 @@ jobs:
           echo "acc/dec/${{inputs.upload}}/hhhh"
 
       - name: Check
-        if: ${{inputs.upload}} == ' '
+        if: contains(${{inputs.upload}}, '**.py')
         run: |
           echo "hello"
 
