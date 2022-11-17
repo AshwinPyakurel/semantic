@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: semantic
+        working-directory: ./semantic
 
     steps:
     - name: Checkout
@@ -66,7 +66,6 @@ jobs:
         split-by: ','
 
     - name: Check
-      working-directory: semantic
       run: |
         echo ${{steps.get_changed.outputs.changed}}
         echo ${{github.workspace}}
