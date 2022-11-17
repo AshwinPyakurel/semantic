@@ -25,7 +25,7 @@ jobs:
 
       - name: Check
         run: |
-          if [ ${inputs.upload }]; then
+          if [ ${{inputs.upload }}]; then
           echo "hello"
           fi  
 
