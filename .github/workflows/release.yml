@@ -58,6 +58,11 @@ jobs:
         foldersOnly: true 
         format: csv
 
+    - name: Check branches
+      run: |
+        echo ${github.head_ref}
+        echo ${github.base_ref}
+
     - name: Get folder Name
       id: folder_name
       uses: rishabhgupta/split-by@v1
