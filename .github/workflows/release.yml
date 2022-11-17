@@ -21,6 +21,10 @@ env:
 jobs:
   Release:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./semantic
+
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -46,9 +50,31 @@ jobs:
       run: |
         echo "title=anything" >> $GITHUB_ENV
 
+    - name: Get Changed Folder
+      uses: Stockopedia/action-get-changed-files@v1
+      id: get_changed
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        foldersOnly: true 
+        format: csv
+
+    - name: Check branches
+      run: |
+        echo ${{github.head_ref}}
+        echo ${{github.base_ref}}
+
+    - name: Get folder Name
+      id: folder_name
+      uses: rishabhgupta/split-by@v1
+      with:
+        string: ${{ steps.get_changed.outputs.changed }}
+        split-by: ','
+
     - name: Check
-      if: contains(env.title, 'Merge pull request') && contains(env.title, 'release/')
-      run: echo "hello"
+      run: |
+        echo ${{steps.get_changed.outputs.changed}}
+        echo ${{github.workspace}}
+        ls -a
 
 
     - name: Setup
