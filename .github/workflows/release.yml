@@ -47,8 +47,10 @@ jobs:
         echo "title=anything" >> $GITHUB_ENV
 
     - name: Check
+      working-directory: semantic
       run: |
         echo ${{github.workspace}}
+        ls -a
 
 
     - name: Setup
