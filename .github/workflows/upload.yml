@@ -25,8 +25,9 @@ jobs:
 
       - name: Check
         run: |
-          if [ ${{inputs.upload}} == " "]; then
+          if [ ${inputs.upload }]; then
           echo "hello"
+          fi  
 
       # - name: Configure AWS Credentials
       #   if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release/')
