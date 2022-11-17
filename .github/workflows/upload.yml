@@ -24,10 +24,9 @@ jobs:
           echo "acc/dec/${{inputs.upload}}/hhhh"
 
       - name: Check
+        if: ${input.upload} == ' '
         run: |
-          if [ ${{inputs.upload }}]; then
           echo "hello"
-          fi  
 
       # - name: Configure AWS Credentials
       #   if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release/')
