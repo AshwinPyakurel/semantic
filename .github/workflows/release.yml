@@ -48,7 +48,7 @@ jobs:
 
     - name: D Check
       if: contains(github.head_ref, 'semantic/${{env.directory}}')
-      run: echo "hello"
+      run: echo "semantic/${{env.directory}}"
 
     - name: Setup Docker Buildx
       id: buildx
