@@ -44,7 +44,7 @@ jobs:
     #   id: get_message
 
     - name: Check
-      run: echo ${{github.head_ref}}
+      run: echo "gg/hh/${{github.head_ref}}""
 
     - name: Setup Docker Buildx
       id: buildx
