@@ -44,7 +44,7 @@ jobs:
     #   id: get_message
 
     - name: Check
-      run: echo "directory=hello" >> $GITHUB_ENV
+      run: echo "directory=jj" >> $GITHUB_ENV
 
     - name: D Check
       if: contains(github.head_ref, 'semantic/${{env.directory}}')
