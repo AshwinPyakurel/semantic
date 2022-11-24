@@ -27,7 +27,7 @@ jobs:
       - name: Check
         run: |
           if(${{env.var}} == hello) 
-          then;
+          then
           echo "hello"
           fi
 
