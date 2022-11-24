@@ -26,8 +26,9 @@ jobs:
 
       - name: Check
         run: |
-          if(echo ${{env.var}} == hello) 
+          if(${{env.var}} == hello) 
           then;
+          echo "hello"
           fi
 
       # - name: Configure AWS Credentials
