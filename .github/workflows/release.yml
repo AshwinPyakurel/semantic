@@ -44,7 +44,11 @@ jobs:
     #   id: get_message
 
     - name: Check
-      run: echo "gg/hh/${{github.head_ref}}""
+      run: echo "directory=hello" >> $GITHUB_ENV
+
+    - name: D Check
+      if: contains(github.head_ref, 'semantic/${{env.directory}}')
+      run: echo "hello"
 
     - name: Setup Docker Buildx
       id: buildx
