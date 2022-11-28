@@ -5,7 +5,7 @@ on:
     inputs:
       upload:
         description: 'Upload DAGs'
-        required: false
+        required: true
 env:
   ACCOUNT: hello
 jobs:
