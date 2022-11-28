@@ -26,7 +26,7 @@ jobs:
           echo "var=something" >> $GITHUB_ENV
 
       - name: Check inputs
-        if: ${{inputs.upload}} == 'all'
+        if: ${{inputs.upload == '*'}}
         run: echo "hello"
 
       - name: Check
