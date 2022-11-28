@@ -30,7 +30,7 @@ jobs:
             check="no no"
           elif [[ ${{env.var}} == "hel" ]]; then
             check="yes yeas"
-          elif [[ ${{env.var}} == 'brother']]; then
+          elif [[ ${{env.var}} == "brother" ]]; then
             check= "brother"
           fi
           echo "directory=${check}" >> $GITHUB_ENV
