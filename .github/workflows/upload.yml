@@ -29,8 +29,7 @@ jobs:
           if ${{env.var}}=="hello"
           then
             check="no no"
-          elif ${{env.var}}=="hel"
-          then
+          else ${{env.var}}=="hel"
             check="yes yeas"
           fi
           echo "directory=${check}" >> $GITHUB_ENV
