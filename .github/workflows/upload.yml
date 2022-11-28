@@ -33,7 +33,7 @@ jobs:
           echo "directory=${check}" >> $GITHUB_ENV
 
       - name: D check
-        run: echo ${{env.check}}
+        run: echo ${{env.directory}}
 
       # - name: Configure AWS Credentials
       #   if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release/')
