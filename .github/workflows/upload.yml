@@ -28,7 +28,7 @@ jobs:
         run: |
           if("${{env.var}}" == "hello") 
           then
-            check="hello"
+            check="no no"
           fi
           echo "directory=${check}" >> $GITHUB_ENV
 
