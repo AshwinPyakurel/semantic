@@ -6,7 +6,8 @@ on:
       upload:
         description: 'Upload DAGs'
         required: false
-
+env:
+  ACCOUNT: hello
 jobs:
   upload-dag:
     runs-on: ubuntu-latest
@@ -26,8 +27,8 @@ jobs:
 
       - name: Check
         run: |
-          if [[ ${{env.var}} == "hello" ]]; then
-            check="no no"
+          if [[ ${{inputs.upload}} == "hello" ]]; then
+            check=$ACCOUNT
           elif [[ ${{env.var}} == "hel" ]]; then
             check="yes yeas"
           elif [[ ${{env.var}} == "something" ]]; then
