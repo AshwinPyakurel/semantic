@@ -28,9 +28,10 @@ jobs:
         run: |
           if(${{env.var}} == hello) 
           then
-          echo "check=hello" >> $GITHUB_ENV
+          check=hello
           fi
-        
+          echo "check=hello" >> $GITHUB_ENV
+
       - name: D check
         run: echo ${{env.check}}
 
