@@ -29,9 +29,9 @@ jobs:
         run: |
           if [[ ${{inputs.upload}} == "hello" ]]; then
             check=$ACCOUNT
-          elif [[ ${{env.var}} == "hel" ]]; then
+          elif [[ ${{inputs.upload}} == "hel" ]]; then
             check="yes yeas"
-          elif [[ ${{env.var}} == "something" ]]; then
+          elif [[ ${{inputs.upload}} == "something" ]]; then
             check="some"
           fi
           echo "directory=${check}" >> $GITHUB_ENV
