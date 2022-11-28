@@ -22,13 +22,16 @@ jobs:
         run: |
           echo ${GITHUB_REF##*/}
           echo "acc/dec/${{inputs.upload}}/hhhh"
-          echo "var=hello" >> $GITHUB_ENV
+          echo "var=hel" >> $GITHUB_ENV
 
       - name: Check
         run: |
           if ${{env.var}}=="hello"
           then
             check="no no"
+          elif ${{env.var}}=="hello"
+          then
+            check="yes yeas"
           fi
           echo "directory=${check}" >> $GITHUB_ENV
 
