@@ -30,7 +30,7 @@ jobs:
           then
           check=hello
           fi
-          echo "check=hello" >> $GITHUB_ENV
+          echo "directory=${check}" >> $GITHUB_ENV
 
       - name: D check
         run: echo ${{env.check}}
