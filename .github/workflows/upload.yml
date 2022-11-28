@@ -25,6 +25,10 @@ jobs:
           echo "acc/dec/${{inputs.upload}}/hhhh"
           echo "var=something" >> $GITHUB_ENV
 
+      - name: Check inputs
+        if: ${{inputs.upload}} == '*'
+        run: echo "hello"
+
       - name: Check
         run: |
           if [[ ${{inputs.upload}} == "hello" ]]; then
