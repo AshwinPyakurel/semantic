@@ -21,10 +21,7 @@ env:
 jobs:
   Release:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./semantic
-
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -46,36 +43,45 @@ jobs:
     #       echo "title=${trim_new_line}" >> $GITHUB_ENV
     #   id: get_message
 
-    - name: Seet title
-      run: |
-        echo "title=anything" >> $GITHUB_ENV
-
-    - name: Get Changed Folder
-      uses: Stockopedia/action-get-changed-files@v1
-      id: get_changed
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        foldersOnly: true 
-        format: csv
-
-    - name: Check branches
-      run: |
-        echo ${{github.head_ref}}
-        echo ${{github.base_ref}}
-
-    - name: Get folder Name
-      id: folder_name
-      uses: rishabhgupta/split-by@v1
-      with:
-        string: ${{ steps.get_changed.outputs.changed }}
-        split-by: ','
-
     - name: Check
-      run: |
-        echo ${{steps.get_changed.outputs.changed}}
-        echo ${{github.workspace}}
-        ls -a
+      run: echo "directory=jj" >> $GITHUB_ENV
 
+    - name: D Check
+      if: contains(github.head_ref, 'semantic/${{env.directory}}')
+      run: echo "semantic/${{env.directory}}"
+
+    - name: Setup Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Set loaders(data-transfer-dw-to-insights) directory
+      if: contains(github.head_ref, '/semantic/')
+      run: echo "directory=semantic" >> $GITHUB_ENV
+
+  # Add caching for docker layers.
+    - name: Cache Docker Layers
+      uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx
+
+    # Build the docker image.
+    #
+    # See: https://github.com/docker/build-push-action
+    - name: Build Docker Image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./${{ env.directory }}
+        file: ./${{ env.directory }}/Dockerfile
+        builder: ${{ steps.buildx.outputs.name }}
+        target: main
+        push: false
+        load: true
+        tags: ${{env.directory}}/test
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
     - name: Setup
       working-directory: ./semantic

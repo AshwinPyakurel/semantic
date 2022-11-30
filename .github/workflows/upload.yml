@@ -4,15 +4,16 @@ on:
   workflow_dispatch:
     inputs:
       upload:
-        description: 'Upload DAGs'
-        required: false
-
+        description: "Upload DAGs"
+        required: true
+env:
+  ACCOUNT: hello
 jobs:
   upload-dag:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: 'semantic'
+        working-directory: "semantic"
 
     steps:
       - name: Checkout
@@ -22,11 +23,27 @@ jobs:
         run: |
           echo ${GITHUB_REF##*/}
           echo "acc/dec/${{inputs.upload}}/hhhh"
+          echo "var=something" >> $GITHUB_ENV
+          echo "ab=some" >> $GITHUB_ENV
+
+      - name: Check inputs
+        if: contains(${{inputs.upload}}, '.py')
+        run: echo "hello"
 
       - name: Check
-        if: ${{!inputs.upload}}
         run: |
-          echo "hello"
+          if [[ ${{inputs.upload}} == "hello" ]]; then
+            check=$ACCOUNT
+          elif [[ ${{inputs.upload}} == "hel" ]]; then
+            check="yes yeas"
+          elif [[ ${{inputs.upload}} == "something" ]]; then
+            check="some"
+          fi
+          echo "directory=${check}" >> $GITHUB_ENV
+
+      - name: D check
+        if: ${{env.ab == env.var}}
+        run: echo ${{env.directory}}
 
       # - name: Configure AWS Credentials
       #   if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release/')
@@ -39,4 +56,4 @@ jobs:
       # - name: Upload dags to s3
       #   if: contains(steps.get_message.outputs.title, 'Merge pull request') && contains(steps.get_message.outputs.title, 'release/')
       #   run: |
-      #     aws s3 cp ${{github.workspace}}/airflow-local-runner/dags s3://com.laudio.artifact./dags --exclude "*" --include "**.py" 
+      #     aws s3 cp ${{github.workspace}}/airflow-local-runner/dags s3://com.laudio.artifact./dags --exclude "*" --include "**.py"
