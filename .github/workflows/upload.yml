@@ -42,7 +42,7 @@ jobs:
           echo "directory=${check}" >> $GITHUB_ENV
 
       - name: D check
-        if: ${{env.ab}} == ${{env.var}}
+        if: ${{env.ab == env.var}}
         run: echo ${{env.directory}}
 
       # - name: Configure AWS Credentials
