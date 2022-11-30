@@ -24,7 +24,7 @@ jobs:
           echo ${GITHUB_REF##*/}
           echo "acc/dec/${{inputs.upload}}/hhhh"
           echo "var=something" >> $GITHUB_ENV
-          echo "ab=something" >> $GITHUB_ENV
+          echo "ab=some" >> $GITHUB_ENV
 
       - name: Check inputs
         if: contains(${{inputs.upload}}, '.py')
